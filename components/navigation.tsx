@@ -6,7 +6,7 @@ import { Download, Home, Moon, Sun } from 'lucide-react'
 import { Button } from "@/components/ui/button"
 import { SearchPreview } from "./search-preview"
 import { useTheme } from "next-themes"
-import { MobileSearch } from "@/app/search/mobile-search"
+// Removed MobileSearch import
 
 export function Navigation() {
   const pathname = usePathname()
@@ -33,14 +33,7 @@ export function Navigation() {
               <Home className="h-4 w-4" />
               <span>Home</span>
             </Link>
-            <Link
-              href="/search"
-              className={`flex items-center space-x-1 px-3 py-2 rounded-md text-sm font-medium transition-colors ${
-                pathname === "/search" ? "bg-primary text-primary-foreground" : "hover:bg-accent"
-              }`}
-            >
-              <span>Browse</span>
-            </Link>
+            {/* Removed Browse link */}
             <Link
               href="/downloads"
               className={`flex items-center space-x-1 px-3 py-2 rounded-md text-sm font-medium transition-colors ${
@@ -54,11 +47,10 @@ export function Navigation() {
         </div>
 
         <div className="flex items-center space-x-4">
-          <div className="hidden sm:block">
-            <SearchPreview className="w-64" />
-          </div>
+          {/* Centralized SearchPreview */}
+          <SearchPreview className="w-64" />
 
-          <MobileSearch />
+          {/* Removed MobileSearch */}
 
           <Button variant="ghost" size="icon" onClick={() => setTheme(theme === "dark" ? "light" : "dark")}>
             <Sun className="h-4 w-4 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />

@@ -12,7 +12,7 @@ export interface AnimeSearchResult {
 export interface SeriesEpisodeDetail {
   id: string // ID for the individual episode
   title: string
-  session: string // Session ID of the series this episode belongs to
+  session: string // Session ID of the series this episode belongs to (this is the 'ep' parameter for download links)
   episode: string // Episode number as a string, e.g., "1"
   snapshot: string; // ADDED: Episode snapshot URL
 }
@@ -51,6 +51,8 @@ export async function searchAnime(query: string): Promise<AnimeSearchResult[]> {
     throw new Error(`Failed to fetch search results: ${res.statusText}`)
   }
   const data = await res.json()
+  console.log("Raw search API response data (in api.ts):", data) // Debugging: Log raw API response
+  // Handle cases where API returns {"status":false} instead of data.data
   return data.data || []
 }
 
@@ -64,6 +66,7 @@ export async function getAnimeDetails(sessionId: string, page = 1): Promise<Seri
     throw new Error(`Failed to fetch series details: ${res.statusText}`)
   }
   const data = await res.json()
+  console.log("Raw series API response data (in api.ts):", data) // Debugging: Log raw API response
   return data
 }
 
@@ -106,5 +109,7 @@ export async function getEpisodeDownloadLinks(sessionId: string, episodeId: stri
     throw new Error(`Failed to fetch episode download links: ${res.statusText}`)
   }
   const data = await res.json()
+  console.log("Raw episode API response data (in api.ts):", data) // Debugging: Log raw API response
+  // The API returns an array directly for episode download links
   return data || []
 }

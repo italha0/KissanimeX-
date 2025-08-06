@@ -8,20 +8,26 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Input } from "@/components/ui/input"
 import { motion, AnimatePresence } from "framer-motion"
-import { searchAnime, AnimeSearchResult } from "@/lib/api" // Changed import to searchAnime
+import { searchAnime, AnimeSearchResult } from "@/lib/api"
 
 interface SearchPreviewProps {
   onSearch?: (query: string) => void
   placeholder?: string
   className?: string
+  initialQuery?: string // Added initialQuery prop
 }
 
-export function SearchPreview({ onSearch, placeholder = "Search anime...", className }: SearchPreviewProps) {
-  const [query, setQuery] = useState("")
+export function SearchPreview({ onSearch, placeholder = "Search anime...", className, initialQuery = "" }: SearchPreviewProps) {
+  const [query, setQuery] = useState(initialQuery) // Initialize with initialQuery
   const [suggestions, setSuggestions] = useState<AnimeSearchResult[]>([])
   const [loading, setLoading] = useState(false)
   const [showSuggestions, setShowSuggestions] = useState(false)
   const router = useRouter()
+
+  // Update internal query state if initialQuery changes (e.g., from URL)
+  useEffect(() => {
+    setQuery(initialQuery);
+  }, [initialQuery]);
 
   // Debounced search for suggestions
   useEffect(() => {
@@ -29,7 +35,7 @@ export function SearchPreview({ onSearch, placeholder = "Search anime...", class
       if (query.trim().length >= 2) {
         try {
           setLoading(true)
-          const results = await searchAnime(query) // Use the new searchAnime function
+          const results = await searchAnime(query)
           setSuggestions(results)
           setShowSuggestions(true)
         } catch (error) {
@@ -51,16 +57,21 @@ export function SearchPreview({ onSearch, placeholder = "Search anime...", class
     if (searchQuery.trim()) {
       setShowSuggestions(false)
       if (onSearch) {
-        onSearch(searchQuery)
+        onSearch(searchQuery) // Use the provided onSearch callback
       } else {
-        router.push(`/search?q=${encodeURIComponent(searchQuery)}`)
+        // Fallback if no onSearch is provided (e.g., direct navigation)
+        router.push(`/?q=${encodeURIComponent(searchQuery)}`)
       }
+    } else if (onSearch) {
+      onSearch(""); // Allow clearing search
+    } else {
+      router.push("/"); // Go to homepage if query is empty
     }
   }
 
   const handleAnimeClick = (animeSessionId: string) => {
     setShowSuggestions(false)
-    setQuery("")
+    setQuery("") // Clear query after selection
     router.push(`/anime/${animeSessionId}`)
   }
 
@@ -83,9 +94,13 @@ export function SearchPreview({ onSearch, placeholder = "Search anime...", class
             }
           }}
           onFocus={() => {
-            if (suggestions.length > 0) {
+            if (suggestions.length > 0 || query.trim().length >= 2) { // Show suggestions if already typed or if there are suggestions
               setShowSuggestions(true)
             }
+          }}
+          onBlur={() => {
+            // Delay hiding to allow click on suggestion
+            setTimeout(() => setShowSuggestions(false), 100);
           }}
         />
       </div>
@@ -161,7 +176,8 @@ export function SearchPreview({ onSearch, placeholder = "Search anime...", class
         )}
       </AnimatePresence>
 
-      {showSuggestions && <div className="fixed inset-0 z-40" onClick={() => setShowSuggestions(false)} />}
+      {/* Overlay to close suggestions when clicking outside - removed as onBlur handles it */}
+      {/* {showSuggestions && <div className="fixed inset-0 z-40" onClick={() => setShowSuggestions(false)} />} */}
     </div>
   )
 }

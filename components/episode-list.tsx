@@ -6,6 +6,8 @@ import { Download } from 'lucide-react'
 import Image from "next/image"
 import Link from "next/link"
 import { SeriesEpisodeDetail } from "@/lib/api"
+import { useState } from "react" // Import useState
+import { DownloadModal } from "./download-modal" // Import DownloadModal
 
 interface EpisodeListProps {
   sessionId: string
@@ -16,6 +18,13 @@ interface EpisodeListProps {
 }
 
 export function EpisodeList({ sessionId, episodes, currentPage, totalPages, onPageChange }: EpisodeListProps) {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedEpisode, setSelectedEpisode] = useState<{
+    sessionId: string;
+    episodeNumber: string;
+    episodeTitle: string;
+  } | null>(null);
+
   const handlePreviousPage = () => {
     if (currentPage > 1) {
       onPageChange(currentPage - 1)
@@ -27,6 +36,15 @@ export function EpisodeList({ sessionId, episodes, currentPage, totalPages, onPa
       onPageChange(currentPage + 1)
     }
   }
+
+  const handleDownloadClick = (episode: SeriesEpisodeDetail) => {
+    setSelectedEpisode({
+      sessionId: sessionId,
+      episodeNumber: episode.episode,
+      episodeTitle: episode.title || `Episode ${episode.episode}`,
+    });
+    setIsModalOpen(true);
+  };
 
   if (!episodes || episodes.length === 0) {
     return <p className="text-muted-foreground text-center py-8">No episodes found for this series.</p>
@@ -72,15 +90,14 @@ export function EpisodeList({ sessionId, episodes, currentPage, totalPages, onPa
                   <h3 className="text-sm font-semibold truncate">{episode.title || `Episode ${episode.episode}`}</h3>
                   <div className="flex justify-between items-center mt-1">
                     <span className="text-xs opacity-80">EP {episode.episode}</span>
-                    <Link href={`/downloads/${sessionId}/${episode.id}`}>
-                      <Button
-                        variant="secondary"
-                        size="sm"
-                        className="h-7 px-3 text-xs"
-                      >
-                        <Download className="h-3 w-3 mr-1" /> Download
-                      </Button>
-                    </Link>
+                    <Button
+                      variant="secondary"
+                      size="sm"
+                      className="h-7 px-3 text-xs"
+                      onClick={() => handleDownloadClick(episode)} // Open modal on click
+                    >
+                      <Download className="h-3 w-3 mr-1" /> Download
+                    </Button>
                   </div>
                 </div>
               </div>
@@ -88,6 +105,15 @@ export function EpisodeList({ sessionId, episodes, currentPage, totalPages, onPa
           )
         })}
       </div>
+      {selectedEpisode && (
+        <DownloadModal
+          isOpen={isModalOpen}
+          onClose={() => setIsModalOpen(false)}
+          sessionId={selectedEpisode.sessionId}
+          episodeTitle={selectedEpisode.episodeTitle}
+          episodeNumber={selectedEpisode.episodeNumber}
+        />
+      )}
     </div>
   )
 }
