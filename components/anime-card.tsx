@@ -1,11 +1,11 @@
 "use client"
 
-import Image from "next/image"
 import Link from "next/link"
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent } from "@/components/ui/card"
 import { motion } from "framer-motion"
 import { AnimeSearchResult } from "@/lib/api"
+import { CustomImage } from "@/components/custom-image"
 
 interface AnimeCardProps {
 anime: AnimeSearchResult
@@ -24,14 +24,15 @@ return (
     <Link href={`/anime/${anime.session}`}>
       <Card className="overflow-hidden border-0 bg-card/50 backdrop-blur transition-all duration-300 hover:bg-card/80">
         <div className="relative aspect-[3/4] overflow-hidden">
-          <Image
-            src={anime.poster || "/placeholder.svg"}
+          <CustomImage
+            src={anime.poster}
             alt={anime.title}
             fill
             className="object-cover transition-transform duration-300 group-hover:scale-110"
             sizes="(max-width: 640px) 50vw, (max-width: 768px) 33vw, (max-width: 1024px) 25vw, (max-width: 1280px) 20vw, 16vw"
             priority={index < 6}
             quality={90}
+            fallback="/placeholder.svg"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
           <div className="absolute top-2 right-2">

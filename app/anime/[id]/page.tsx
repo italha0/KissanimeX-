@@ -2,8 +2,8 @@
 
 import { useState, useEffect } from "react"
 import { useParams, useRouter } from "next/navigation"
-import Image from "next/image"
-import { BookOpen, ArrowLeft, ImageIcon, Download } from 'lucide-react'
+import { BookOpen, ArrowLeft, Download } from 'lucide-react'
+import { CustomImage } from "@/components/custom-image"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"

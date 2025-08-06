@@ -3,11 +3,11 @@
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Download } from 'lucide-react'
-import Image from "next/image"
 import Link from "next/link"
 import { SeriesEpisodeDetail } from "@/lib/api"
 import { useState } from "react" // Import useState
 import { DownloadModal } from "./download-modal" // Import DownloadModal
+import { CustomImage } from "@/components/custom-image"
 
 interface EpisodeListProps {
   sessionId: string
