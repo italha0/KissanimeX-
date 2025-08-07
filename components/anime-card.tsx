@@ -8,8 +8,11 @@ interface AnimeCardProps {
 }
 
 export function AnimeCard({ anime }: AnimeCardProps) {
-  // Use the direct poster URL, as i.animepahe.ru is now configured in next.config.mjs
-  const posterUrl = anime.poster || "/placeholder.svg?height=300&width=200"
+  const proxyBase = "https://anime.apex-cloud.workers.dev/proxy?modify&proxyUrl=";
+
+  const posterUrl = anime.poster
+    ? `${proxyBase}${encodeURIComponent(anime.poster)}`
+    : "/placeholder.svg";
 
   return (
     <Link href={`/anime/${anime.session}`} className="block">

@@ -74,8 +74,11 @@ export default function AnimeDetailsPage({ params }: AnimeDetailsPageProps) {
     return <div className="container mx-auto p-4 text-gray-600 text-center mt-8">No anime data found.</div>
   }
 
-  // Use the direct poster URL, as i.animepahe.ru is now configured in next.config.mjs
-  const posterUrl = seriesData.poster || "/placeholder.svg?height=450&width=300"
+  const proxyBase = "https://anime.apex-cloud.workers.dev/proxy?modify&proxyUrl="
+
+  const posterUrl = seriesData.poster
+    ? `${proxyBase}${encodeURIComponent(seriesData.poster)}`
+    : "/placeholder.svg?height=450&width=300"
 
   return (
     <div className="container mx-auto p-4">
