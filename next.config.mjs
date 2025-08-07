@@ -1,44 +1,43 @@
-/** @type \{import('next').NextConfig\} */
-const nextConfig = \{
-  eslint: \{
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  eslint: {
     ignoreDuringBuilds: true,
-  \},
-  typescript: \{
+  },
+  typescript: {
     ignoreBuildErrors: true,
-  \},
-  images: \{
+  },
+  images: {
     remotePatterns: [
-      \{
-        protocol: 'https',
-<<<<<<< HEAD
-        hostname: 'i.animepahe.ru',
-        port: '',
-        pathname: '/posters/**', // For anime posters
-      \},
-      \{
-        protocol: 'https',
-        hostname: 'i.animepahe.ru',
-        port: '',
-        pathname: '/snapshots/**', // For episode snapshots/thumbnails
-      \},
-      // Removed the proxy domain as it's not needed for direct i.animepahe.ru images
-=======
-        hostname: 'anime.apex-cloud.workers.dev',
-        pathname: '/**',
-      },
+      // AnimePahe Posters
       {
-        protocol: 'https', 
-        hostname: 'i.animepahe.ru',
-        pathname: '/**',
+        protocol: "https",
+        hostname: "i.animepahe.ru",
+        port: "",
+        pathname: "/posters/**",
       },
+      // AnimePahe Snapshots
       {
-        protocol: 'https',
-        hostname: 'via.placeholder.com',
-        pathname: '/**',
+        protocol: "https",
+        hostname: "i.animepahe.ru",
+        port: "",
+        pathname: "/snapshots/**",
       },
->>>>>>> 633778944d1412981778c3b3b615553deafda409
+      // Anime API Proxy (if needed)
+      {
+        protocol: "https",
+        hostname: "anime.apex-cloud.workers.dev",
+        port: "",
+        pathname: "/**",
+      },
+      // Placeholder images
+      {
+        protocol: "https",
+        hostname: "via.placeholder.com",
+        port: "",
+        pathname: "/**",
+      },
     ],
-  \},
-\};
+  },
+};
 
 export default nextConfig;
