@@ -1,5 +1,5 @@
 {
   "/page": "app/page.js",
-  "/anime/[sessionId]/page": "app/anime/[sessionId]/page.js",
-  "/search/page": "app/search/page.js"
+  "/search/page": "app/search/page.js",
+  "/anime/[sessionId]/page": "app/anime/[sessionId]/page.js"
 }
