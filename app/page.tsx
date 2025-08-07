@@ -1,5 +1,6 @@
 import Link from "next/link"
 import { SearchInput } from "@/components/search-input"
+import Head from "next/head"
 
 export default function HomePage() {
   return (

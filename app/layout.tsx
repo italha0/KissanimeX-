@@ -8,9 +8,47 @@ import { Analytics } from "@vercel/analytics/next"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "Anime Downloader",
-  description: "Minimal and fast anime download website",
-    generator: 'v0.dev'
+  title: "Anime Downloader - Fast HD Anime Downloads (AnimePahe, Zoro, Kissanime)",
+  description:
+    "Download anime fast and free from sources like AnimePahe, Zoro, and Kissanime. Stream and save your favorite episodes in HD without ads.",
+  keywords: [
+    "anime download",
+    "anime downloader",
+    "animepahe download",
+    "kissanime replacement",
+    "zoro anime",
+    "anime hd download",
+    "free anime episodes",
+    "download anime episodes",
+    "anime torrent",
+    "anime direct download",
+  ],
+  openGraph: {
+    title: "Anime Downloader",
+    description:
+      "Fast anime download site with support for AnimePahe, Zoro, Kissanime and more. Stream or save episodes in HD.",
+    url: "https://your-site-url.com",
+    siteName: "Anime Downloader",
+    images: [
+      {
+        url: "https://your-site-url.com/preview.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Anime Downloader Preview",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Anime Downloader",
+    description:
+      "Stream or download anime from AnimePahe, Zoro, and more with ease.",
+    images: ["https://your-site-url.com/preview.jpg"],
+    creator: "@yourTwitterHandle",
+  },
+  generator: "v0.dev",
 }
 
 export default function RootLayout({

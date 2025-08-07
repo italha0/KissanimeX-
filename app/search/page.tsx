@@ -1,5 +1,5 @@
 "use client"
-
+import Head from "next/head"
 import { useSearchParams } from "next/navigation"
 import { useQuery } from "@tanstack/react-query"
 import { searchAnime } from "@/lib/api"

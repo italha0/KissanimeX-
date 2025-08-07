@@ -6,6 +6,7 @@ import { EpisodeList } from "@/components/episode-list"
 import { DownloadModal } from "@/components/download-modal" // Import the new modal component
 import { useState } from "react"
 import { useQuery } from "@tanstack/react-query"
+import Head from "next/head"
 
 interface AnimeDetailsPageProps {
   params: {
