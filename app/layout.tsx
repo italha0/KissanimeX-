@@ -1,38 +1,27 @@
 import type React from "react"
 import type { Metadata } from "next"
-import { Inter } from 'next/font/google'
+import { Inter } from "next/font/google"
 import "./globals.css"
-import { ThemeProvider } from "@/components/theme-provider"
-import { Navigation } from "@/components/navigation"
-import { Providers } from "@/components/providers" // Import Providers
-import { Toaster } from "sonner" // Import Toaster
+import { QueryProvider } from "@/lib/query-provider"
 
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-title: "AnimeVault - Download Portal",
-description: "Minimalist anime download portal with direct links",
+  title: "Anime Downloader",
+  description: "Minimal and fast anime download website",
     generator: 'v0.dev'
 }
 
 export default function RootLayout({
-children,
-}: {
-children: React.ReactNode
-}) {
-return (
-  <html lang="en" suppressHydrationWarning>
-    <body className={inter.className}>
-      <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
-        <Providers> {/* Wrap with Providers */}
-          <div className="min-h-screen bg-background">
-            <Navigation />
-            <main>{children}</main>
-          </div>
-        </Providers>
-        <Toaster /> {/* Add Toaster for notifications */}
-      </ThemeProvider>
-    </body>
-  </html>
-)
+  children,
+}: Readonly<{
+  children: React.ReactNode
+}>) {
+  return (
+    <html lang="en">
+      <body className={inter.className}>
+        <QueryProvider>{children}</QueryProvider>
+      </body>
+    </html>
+  )
 }

@@ -1,21 +1,28 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {
-  eslint: {
+/** @type \{import('next').NextConfig\} */
+const nextConfig = \{
+  eslint: \{
     ignoreDuringBuilds: true,
-  },
-  typescript: {
+  \},
+  typescript: \{
     ignoreBuildErrors: true,
-  },
-  images: {
+  \},
+  images: \{
     remotePatterns: [
-      {
+      \{
         protocol: 'https',
-        hostname: 'anime.apex-cloud.workers.dev',
-        pathname: '/proxy/**',
-      },
+        hostname: 'i.animepahe.ru',
+        port: '',
+        pathname: '/posters/**', // For anime posters
+      \},
+      \{
+        protocol: 'https',
+        hostname: 'i.animepahe.ru',
+        port: '',
+        pathname: '/snapshots/**', // For episode snapshots/thumbnails
+      \},
+      // Removed the proxy domain as it's not needed for direct i.animepahe.ru images
     ],
-    unoptimized: true,
-  },
-};
+  \},
+\};
 
 export default nextConfig;

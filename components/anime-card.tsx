@@ -1,58 +1,39 @@
-"use client"
-
+import Image from "next/image"
 import Link from "next/link"
-import { Badge } from "@/components/ui/badge"
-import { Card, CardContent } from "@/components/ui/card"
-import { motion } from "framer-motion"
-import { AnimeSearchResult } from "@/lib/api"
-import { CustomImage } from "@/components/custom-image"
+import { Card, CardContent, CardFooter } from "@/components/ui/card"
+import type { AnimeSearchResult } from "@/lib/api"
 
 interface AnimeCardProps {
-anime: AnimeSearchResult
-index?: number
+  anime: AnimeSearchResult
 }
 
-export function AnimeCard({ anime, index = 0 }: AnimeCardProps) {
-return (
-  <motion.div
-    initial={{ opacity: 0, y: 20 }}
-    animate={{ opacity: 1, y: 0 }}
-    transition={{ duration: 0.3, delay: index * 0.1 }}
-    whileHover={{ scale: 1.05 }}
-    className="group"
-  >
-    <Link href={`/anime/${anime.session}`}>
-      <Card className="overflow-hidden border-0 bg-card/50 backdrop-blur transition-all duration-300 hover:bg-card/80">
-        <div className="relative aspect-[3/4] overflow-hidden">
-          <CustomImage
-            src={anime.poster}
+export function AnimeCard({ anime }: AnimeCardProps) {
+  // Use the direct poster URL, as i.animepahe.ru is now configured in next.config.mjs
+  const posterUrl = anime.poster || "/placeholder.svg?height=300&width=200"
+
+  return (
+    <Link href={`/anime/${anime.session}`} className="block">
+      <Card className="w-full h-full flex flex-col overflow-hidden rounded-lg shadow-md hover:shadow-lg transition-shadow duration-200">
+        <div className="relative w-full aspect-[2/3] bg-gray-200">
+          <Image
+            src={posterUrl || "/placeholder.svg"}
             alt={anime.title}
             fill
-            className="object-cover transition-transform duration-300 group-hover:scale-110"
-            sizes="(max-width: 640px) 50vw, (max-width: 768px) 33vw, (max-width: 1024px) 25vw, (max-width: 1280px) 20vw, 16vw"
-            priority={index < 6}
-            quality={90}
-            fallback="/placeholder.svg"
+            sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
+            style={{ objectFit: "cover" }}
+            className="rounded-t-lg"
+            priority
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-          <div className="absolute top-2 right-2">
-            <Badge variant={anime.status === "Ongoing" ? "default" : "secondary"}>{anime.status}</Badge>
-          </div>
-          <div className="absolute bottom-2 left-2 right-2">
-            <div className="flex items-center justify-between text-white text-xs">
-              <span>Type: {anime.type}</span>
-            </div>
-          </div>
-          {/* Removed Play icon overlay as streaming is removed */}
         </div>
-        <CardContent className="p-4">
-          <h3 className="font-semibold text-sm line-clamp-2 mb-2">{anime.title}</h3>
-          <div className="flex items-center justify-between text-xs text-muted-foreground">
-            <span>{anime.episodes} Episodes</span>
-          </div>
+        <CardContent className="p-3 flex-grow">
+          <h3 className="text-sm font-semibold line-clamp-2 text-gray-800">{anime.title}</h3>
         </CardContent>
+        <CardFooter className="p-3 pt-0 text-xs text-gray-600">
+          <p className="truncate">
+            {anime.type} • {anime.status}
+          </p>
+        </CardFooter>
       </Card>
     </Link>
-  </motion.div>
-)
+  )
 }
