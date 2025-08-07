@@ -45,10 +45,10 @@ export function DownloadModal({
               {downloadLinks.map((linkItem, index) => {
                 // Corrected regex to parse quality and filesize from the 'name' string
                 // Example name: "Kametsu 360p (42MB) "
-                // Using escaped dollar sign for literal match
-                const nameMatch = linkItem.name.match(/(\d+p)\s*$$([\d.]+\s*MB)$$$/)
-                const quality = nameMatch ? nameMatch[1] : "Unknown Quality"
-                const filesize = nameMatch ? nameMatch[2] : "Unknown Size"
+                // Using escaped parentheses for literal match
+                const nameMatch = linkItem.name.match(/(\d+p)\s*$$([\d.]+\s*MB)$$/);
+                const quality = nameMatch ? nameMatch[1] : "Unknown Quality";
+                const filesize = nameMatch ? nameMatch[2] : "Unknown Size";
 
                 return (
                   <Button asChild key={index} className="w-full py-3 text-base bg-custom-blue-royal-blue hover:bg-custom-blue-slate-blue text-custom-blue-cool-gray-light">

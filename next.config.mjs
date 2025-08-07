@@ -13,6 +13,11 @@ const nextConfig = {
         hostname: 'anime.apex-cloud.workers.dev',
         pathname: '/proxy/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'i.animepahe.ru', // Added for episode snapshots and potentially posters
+        pathname: '/**',
+      },
     ],
     unoptimized: true,
   },
