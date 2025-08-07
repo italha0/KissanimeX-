@@ -8,7 +8,7 @@ import { Analytics } from "@vercel/analytics/next"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "Anime Downloader - Fast HD Anime Downloads (AnimePahe, Zoro, Kissanime)",
+  title: "Fast Anime Downloads: Your Ultimate Anime Downloader Guide",
   description:
     "Download anime fast and free from sources like AnimePahe, Zoro, and Kissanime. Stream and save your favorite episodes in HD without ads.",
   keywords: [
