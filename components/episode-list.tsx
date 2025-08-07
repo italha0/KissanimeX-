@@ -105,13 +105,13 @@ export function EpisodeList({
           <Card key={episode.id} className="overflow-hidden hover:shadow-lg transition-shadow">
             <div className="relative aspect-video bg-muted">
               <Image
-                src={episode.snapshot || "/placeholder.svg?height=200&width=300&text=Episode"}
+                src={episode.snapshot}
                 alt={`Episode ${episode.episode} thumbnail`}
                 fill
                 className="object-cover"
                 sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
                 onError={(e) => {
-                  e.currentTarget.src = "/placeholder.svg?height=200&width=300&text=Episode"
+                  e.currentTarget.src = "/placeholder.svg"
                 }}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />

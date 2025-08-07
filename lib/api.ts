@@ -1,5 +1,24 @@
 const BASE_URL = "https://anime.apex-cloud.workers.dev/"
 
+/**
+ * Helper function to ensure image URLs are properly formatted
+ */
+function processImageUrl(url: string | null | undefined): string {
+  if (!url) return "/placeholder.svg"
+  
+  // If it's already a full URL, return as is
+  if (url.startsWith('http')) {
+    return url
+  }
+  
+  // If it's a relative path, assume it needs the proxy
+  if (url.startsWith('/')) {
+    return `${BASE_URL.slice(0, -1)}${url}`
+  }
+  
+  return url
+}
+
 export interface AnimeSearchResult {
   title: string
   session: string
@@ -53,7 +72,13 @@ export async function searchAnime(query: string): Promise<AnimeSearchResult[]> {
     }
     
     const data = await response.json()
-    return data.data || []
+    
+    // Process the data to ensure image URLs are properly formatted
+    const results = data.data || []
+    return results.map((anime: any) => ({
+      ...anime,
+      poster: processImageUrl(anime.poster)
+    }))
   } catch (error) {
     console.error('Search API error:', error)
     throw new Error('Failed to search anime')
@@ -72,7 +97,16 @@ export async function getAnimeDetails(sessionId: string, page = 1): Promise<Seri
     }
     
     const data = await response.json()
-    return data
+    
+    // Process the data to ensure image URLs are properly formatted
+    return {
+      ...data,
+      poster: processImageUrl(data.poster),
+      episodes: (data.episodes || []).map((episode: any) => ({
+        ...episode,
+        snapshot: processImageUrl(episode.snapshot)
+      }))
+    }
   } catch (error) {
     console.error('Series API error:', error)
     throw new Error('Failed to fetch anime details')

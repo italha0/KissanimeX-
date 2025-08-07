@@ -29,11 +29,11 @@ export default function AnimeDetailPage() {
   })
 
   const handleImageError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
-    e.currentTarget.src = `/placeholder.svg?height=600&width=400&text=${encodeURIComponent(anime?.title || "Anime")}`
+    e.currentTarget.src = "/placeholder.svg"
   }
 
   const handleBackdropError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
-    e.currentTarget.src = `/placeholder.svg?height=800&width=1400&text=${encodeURIComponent(anime?.title || "Anime")}+Backdrop`
+    e.currentTarget.src = "/placeholder.svg"
   }
 
   if (isLoading) {
@@ -97,7 +97,7 @@ export default function AnimeDetailPage() {
       <section className="relative h-[60vh] overflow-hidden">
         <div className="absolute inset-0">
           <Image
-            src={anime.poster || "/placeholder.svg"}
+            src={anime.poster}
             alt={`${anime.title} backdrop`}
             fill
             className="object-cover"
@@ -120,7 +120,7 @@ export default function AnimeDetailPage() {
             <div className="flex-shrink-0 relative">
               <div className="relative w-[300px] h-[450px] rounded-lg overflow-hidden shadow-2xl bg-muted">
                 <Image
-                  src={anime.poster || "/placeholder.svg"}
+                  src={anime.poster}
                   alt={`${anime.title} poster`}
                   fill
                   className="object-cover"

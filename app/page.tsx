@@ -15,17 +15,20 @@ import { useSearchParams, useRouter } from "next/navigation"
 
 // Hero Section Component
 function HeroSectionContent({ featuredAnime }: { featuredAnime: AnimeSearchResult | null }) {
-  const heroImageUrl = featuredAnime?.poster || "/placeholder.svg?height=700&width=1200&text=Featured Anime"
+  const heroImageUrl = featuredAnime?.poster || "/placeholder.svg"
 
   return (
     <section className="relative h-[70vh] overflow-hidden">
       <div className="absolute inset-0">
         <Image
-          src={heroImageUrl || "/placeholder.svg"}
+          src={heroImageUrl}
           alt={featuredAnime?.title || "Featured Anime"}
           fill
           className="object-cover"
           priority
+          onError={(e) => {
+            e.currentTarget.src = "/placeholder.svg"
+          }}
         />
         <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
