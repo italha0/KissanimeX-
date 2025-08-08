@@ -1,40 +1,51 @@
 {
   "pages": {
-    "/layout": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/css/app/layout.css",
-      "static/chunks/app/layout.js"
-    ],
-    "/loading": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/loading.js"
+    "/_not-found/page": [
+      "static/chunks/[root of the server]__23ac364f._.css",
+      "static/chunks/node_modules_12e156ff._.js",
+      "static/chunks/lib_query-provider_tsx_c59e80eb._.js",
+      "static/chunks/app_layout_tsx_f0e4c1a2._.js",
+      "static/chunks/[turbopack]_browser_dev_hmr-client_hmr-client_ts_49a6ea35._.js",
+      "static/chunks/node_modules_next_dist_compiled_2ce9398a._.js",
+      "static/chunks/node_modules_next_dist_client_43e3ffb8._.js",
+      "static/chunks/node_modules_next_dist_3bfaed20._.js",
+      "static/chunks/node_modules_@swc_helpers_cjs_00636ac3._.js",
+      "static/chunks/_e69f0d32._.js",
+      "static/chunks/_be317ff2._.js"
     ],
     "/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/page.js"
-    ],
-    "/search/loading": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/search/loading.js"
+      "static/chunks/[root of the server]__23ac364f._.css",
+      "static/chunks/node_modules_12e156ff._.js",
+      "static/chunks/lib_query-provider_tsx_c59e80eb._.js",
+      "static/chunks/app_layout_tsx_f0e4c1a2._.js",
+      "static/chunks/[turbopack]_browser_dev_hmr-client_hmr-client_ts_b1db66a6._.js",
+      "static/chunks/node_modules_3067febf._.js",
+      "static/chunks/_202ce487._.js",
+      "static/chunks/app_page_tsx_539c74da._.js",
+      "static/chunks/[turbopack]_browser_dev_hmr-client_hmr-client_ts_49a6ea35._.js",
+      "static/chunks/node_modules_next_dist_compiled_2ce9398a._.js",
+      "static/chunks/node_modules_next_dist_client_43e3ffb8._.js",
+      "static/chunks/node_modules_next_dist_3bfaed20._.js",
+      "static/chunks/node_modules_@swc_helpers_cjs_00636ac3._.js",
+      "static/chunks/_e69f0d32._.js",
+      "static/chunks/_be317ff2._.js"
     ],
     "/search/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/search/page.js"
-    ],
-    "/anime/[sessionId]/loading": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/anime/[sessionId]/loading.js"
-    ],
-    "/anime/[sessionId]/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/anime/[sessionId]/page.js"
+      "static/chunks/[root of the server]__23ac364f._.css",
+      "static/chunks/node_modules_12e156ff._.js",
+      "static/chunks/lib_query-provider_tsx_c59e80eb._.js",
+      "static/chunks/app_layout_tsx_f0e4c1a2._.js",
+      "static/chunks/[turbopack]_browser_dev_hmr-client_hmr-client_ts_c64b7965._.js",
+      "static/chunks/node_modules_62f5a1c8._.js",
+      "static/chunks/_42dbf251._.js",
+      "static/chunks/app_search_page_tsx_539c74da._.js",
+      "static/chunks/[turbopack]_browser_dev_hmr-client_hmr-client_ts_49a6ea35._.js",
+      "static/chunks/node_modules_next_dist_compiled_2ce9398a._.js",
+      "static/chunks/node_modules_next_dist_client_43e3ffb8._.js",
+      "static/chunks/node_modules_next_dist_3bfaed20._.js",
+      "static/chunks/node_modules_@swc_helpers_cjs_00636ac3._.js",
+      "static/chunks/_e69f0d32._.js",
+      "static/chunks/_be317ff2._.js"
     ]
   }
 }
