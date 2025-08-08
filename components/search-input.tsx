@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { Search } from "lucide-react"
+import Link from "next/link"
 
 export function SearchInput() {
   const [query, setQuery] = useState("")
@@ -20,6 +21,7 @@ export function SearchInput() {
   }
 
   return (
+    <>
     <form onSubmit={handleSearch} className="flex w-full max-w-md items-center space-x-2">
       <Input
         type="text"
@@ -33,5 +35,9 @@ export function SearchInput() {
         <span className="sr-only">Search</span>
       </Button>
     </form>
+     <Link href="/" className="text-sm text-gray-600 hover:underline">
+          Home
+      </Link>
+    </>
   )
 }
