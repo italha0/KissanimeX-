@@ -62,8 +62,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <QueryProvider>{children}</QueryProvider>
         <Analytics />
-        <SpeedInsights />
-        
+        <SpeedInsights/>
       </body>
     </html>
   )

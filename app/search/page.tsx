@@ -5,6 +5,7 @@ import { useQuery } from "@tanstack/react-query"
 import { searchAnime } from "@/lib/api"
 import { AnimeCard } from "@/components/anime-card"
 import { SearchInput } from "@/components/search-input"
+import Link from "next/link"
 
 export default function SearchResultsPage() {
   const searchParams = useSearchParams()
@@ -26,6 +27,13 @@ export default function SearchResultsPage() {
     <div className="container mx-auto p-4">
       <div className="mb-6 flex justify-center">
         <SearchInput />
+       
+      </div>
+      <div className="flex items-center justify-center">
+        <Link href="/" className="text-sm text-gray-600 hover:underline">
+          ← Home
+          
+        </Link>
       </div>
       <h2 className="text-2xl font-bold mb-6 text-gray-800">
         {query ? `Search Results for "${query}"` : "Enter a search query"}
