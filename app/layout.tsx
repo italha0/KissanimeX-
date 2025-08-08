@@ -63,8 +63,7 @@ export default function RootLayout({
         <QueryProvider>{children}</QueryProvider>
         <Analytics />
         <SpeedInsights />
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2892825507816139"
-          crossorigin="anonymous"></script>
+        
       </body>
     </html>
   )
