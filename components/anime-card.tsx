@@ -12,9 +12,12 @@ interface AnimeCardProps {
 }
 
 export function AnimeCard({ anime, className }: AnimeCardProps) {
+  // Keep your proxy so remote images work without next.config remotePatterns.
+  // We also set unoptimized on Image to avoid config. [^1][^2][^3]
   const proxyBase = "https://anime.apex-cloud.workers.dev/proxy?modify&proxyUrl="
-  const posterUrl =
-    anime?.poster ? `${proxyBase}${encodeURIComponent(anime.poster)}` : "/placeholder.svg?height=900&width=600"
+  const posterUrl = anime?.poster
+    ? `${proxyBase}${encodeURIComponent(anime.poster)}`
+    : "/placeholder.svg?height=900&width=600"
 
   const [loaded, setLoaded] = useState(false)
 
@@ -24,12 +27,9 @@ export function AnimeCard({ anime, className }: AnimeCardProps) {
     (anime as any)?.totalEpisodes ??
     (anime as any)?.total_episodes ??
     (anime as any)?.episodeCount
-
   const episodesText = typeof episodes === "number" ? `${episodes} Episodes` : "Episodes"
-
-  const statusRaw = anime?.status ?? ""
-  const status = typeof statusRaw === "string" ? statusRaw : "Finished Airing"
-
+  const statusRaw = (anime as any)?.status ?? ""
+  const status = typeof statusRaw === "string" && statusRaw.trim().length ? statusRaw : "Finished Airing"
   const title = anime?.title ?? "Untitled"
 
   const year =
@@ -50,80 +50,74 @@ export function AnimeCard({ anime, className }: AnimeCardProps) {
     })()
 
   const type = (anime as any)?.type ?? "TV"
-
   const score =
-    (anime as any)?.score ??
-    (anime as any)?.rating ??
-    (anime as any)?.averageScore ??
-    (anime as any)?.scoreRaw
+    (anime as any)?.score ?? (anime as any)?.rating ?? (anime as any)?.averageScore ?? (anime as any)?.scoreRaw
 
   return (
-    <Link href={`/anime/${anime?.session || ""}`} className="block" prefetch={false}>
+    <Link href={`/anime/${anime?.session || ""}`} className="block" prefetch={false} aria-label={`Open ${title}`}>
       <article
         className={cn(
-          // Card shell (styled to mirror the provided reference)
-          "m-4 w-72 cursor-pointer border rounded-2xl bg-white text-foreground shadow-md",
-          "transition-transform duration-200 hover:border-primary",
+          // Make the card fluid and stack-friendly on mobile
+          "w-full h-full rounded-2xl border bg-white text-foreground shadow-sm hover:shadow-md transition",
           "flex flex-col overflow-hidden",
+          "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60",
           className,
         )}
       >
         {/* Header */}
-        <div className="flex p-4 pt-2 pb-0 flex-col text-left items-start h-32 overflow-hidden">
-          <div className="flex flex-col gap-y-2 my-2">
-            <span className="text-gray-500">{episodesText}</span>
-            <p className="text-[0.7rem] uppercase font-bold">{status}</p>
+        <div className="flex flex-col gap-2 p-3 sm:p-4 text-left items-start">
+          <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs sm:text-sm text-muted-foreground">
+            <span>{episodesText}</span>
+            <span className="uppercase font-semibold tracking-wide text-[0.65rem] sm:text-[0.7rem] text-foreground/80">
+              {status}
+            </span>
           </div>
           <hr className="w-full border-t border-gray-200" role="separator" />
-          <h4 className="font-bold text-normal leading-snug line-clamp-2 mt-2">{title}</h4>
+          <h4 className="font-bold leading-snug text-sm sm:text-base break-words line-clamp-2 mt-1">{title}</h4>
         </div>
 
-        {/* Poster + blurred bg */}
-        <div className="w-full p-3 flex flex-col items-center justify-center py-4 gap-y-2">
-          <div className="relative rounded-2xl shadow-none" style={{ maxWidth: 240 }}>
+        {/* Poster with blurred background */}
+        <div className="w-full px-3 pb-3 sm:px-4 sm:pb-4">
+          {/* Make image responsive with aspect ratio and sizes for proper device sizing [^1][^2] */}
+          <div className="relative w-full aspect-[2/3] overflow-hidden rounded-xl">
+            {/* Blurred background */}
+            <Image
+              src={posterUrl || "/placeholder.svg?height=900&width=600&query=anime%20poster%20blur"}
+              alt=""
+              aria-hidden="true"
+              fill
+              unoptimized
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 33vw, 240px"
+              className={cn("absolute inset-0 object-cover", "blur-lg scale-105 saturate-150 opacity-30")}
+              priority
+            />
             {/* Foreground poster */}
             <Image
-              src={posterUrl || "/placeholder.svg"}
+              src={posterUrl || "/placeholder.svg?height=900&width=600&query=anime%20poster"}
               alt={title}
-              width={240}
-              height={350}
-              priority
+              fill
               unoptimized
-              onLoadingComplete={() => setLoaded(true)}
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 33vw, 240px"
+              onLoad={() => setLoaded(true)}
               className={cn(
-                "relative z-10 object-cover rounded-xl h-[350px] w-[240px]",
+                "relative z-10 object-cover rounded-xl",
                 "opacity-0 transition-opacity duration-300",
                 loaded && "opacity-100",
               )}
+              priority
             />
-            {/* Blurred background of the same image (behind) */}
-            <div className="absolute inset-0 rounded-2xl overflow-hidden">
-              <Image
-                src={posterUrl || "/placeholder.svg"}
-                alt=""
-                aria-hidden="true"
-                fill
-                priority
-                unoptimized
-                sizes="(max-width: 640px) 100vw, 240px"
-                className={cn(
-                  "absolute inset-0 w-full h-full object-cover rounded-2xl",
-                  "blur-lg scale-105 saturate-150 opacity-30 translate-y-1",
-                )}
-              />
-            </div>
           </div>
 
           {/* Badges */}
-          <div className="flex gap-x-2 mt-4">
+          <div className="flex flex-wrap gap-2 mt-3">
             <span className="inline-flex items-center h-7 rounded-md bg-gradient-to-b from-blue-400 to-blue-600 text-white shadow-lg shadow-blue-500/40">
-              <span className="px-2 text-sm font-normal">{String(type)}</span>
+              <span className="px-2 text-xs sm:text-sm font-normal">{String(type)}</span>
             </span>
             <span className="inline-flex items-center h-7 rounded-md bg-gradient-to-b from-violet-400 to-violet-600 text-white shadow-lg shadow-violet-500/40">
-              <span className="px-2 text-sm font-normal">{year ?? "—"}</span>
+              <span className="px-2 text-xs sm:text-sm font-normal">{year ?? "—"}</span>
             </span>
             <span className="inline-flex items-center h-7 rounded-md bg-gradient-to-b from-emerald-400 to-emerald-600 text-white shadow-lg shadow-emerald-500/40">
-              <span className="px-2 text-sm font-normal">
+              <span className="px-2 text-xs sm:text-sm font-normal">
                 {typeof score === "number" ? `Score ${score}` : score ? `Score ${score}` : "Score —"}
               </span>
             </span>

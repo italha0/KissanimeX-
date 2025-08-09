@@ -1,69 +1,81 @@
 "use client"
-import Head from "next/head"
+
+import Link from "next/link"
 import { useSearchParams } from "next/navigation"
-import { useQuery } from "@tanstack/react-query"
-import { searchAnime } from "@/lib/api"
+import { QueryClient, QueryClientProvider, useQuery } from "@tanstack/react-query"
+import { useMemo } from "react"
+import { searchAnime, type AnimeSearchResult } from "@/lib/api"
 import { AnimeCard } from "@/components/anime-card"
 import { SearchInput } from "@/components/search-input"
-import Link from "next/link"
 
-export default function SearchResultsPage() {
+function Results() {
   const searchParams = useSearchParams()
   const query = searchParams.get("query") || ""
-
-  console.log("Search query (in page.tsx):", query) // Debugging: Log the search query
-
-  const { data, isLoading, isError, error } = useQuery({
+  const { data, isLoading, isError, error } = useQuery<AnimeSearchResult[]>({
     queryKey: ["searchAnime", query],
     queryFn: () => searchAnime(query),
-    enabled: !!query, // Only run query if query is not empty
+    enabled: !!query,
   })
 
-  console.log("Search data (in page.tsx):", data) // Debugging: Log the fetched data
-  console.log("Is loading (in page.tsx):", isLoading) // Debugging: Log loading state
-  console.log("Is error (in page.tsx):", isError, error) // Debugging: Log error state and message
-
   return (
-    <div className="container mx-auto p-4">
-      <div className="mb-6 flex justify-center">
+    <div className="container mx-auto px-3 sm:px-4 py-4">
+      {/* Search bar */}
+      <div className="mb-4 sm:mb-6 flex justify-center">
         <SearchInput />
-       
       </div>
-      <div className="flex items-center justify-center">
+
+      {/* Back home */}
+      <div className="flex items-center justify-center mb-2">
         <Link href="/" className="text-sm text-gray-600 hover:underline">
-          ← Home
-          
+          {"\u2190"} Home
         </Link>
       </div>
-      <h2 className="text-2xl font-bold mb-6 text-gray-800">
+
+      <h2 className="text-lg sm:text-2xl font-bold mb-4 sm:mb-6 text-gray-800 text-center sm:text-left">
         {query ? `Search Results for "${query}"` : "Enter a search query"}
       </h2>
 
+      {/* Loading skeleton */}
       {isLoading && query && (
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3 sm:gap-4">
           {Array.from({ length: 12 }).map((_, i) => (
-            <div key={i} className="w-full aspect-[2/3] bg-gray-200 animate-pulse rounded-lg" />
+            <div key={i} className="w-full aspect-[2/3] bg-gray-200 animate-pulse rounded-xl" />
           ))}
         </div>
       )}
 
+      {/* Error state */}
       {isError && query && (
-        <p className="text-red-500 text-center">Error: {error?.message || "Failed to fetch search results."}</p>
+        <p className="text-red-500 text-center">
+          Error: {(error as Error)?.message || "Failed to fetch search results."}
+        </p>
       )}
 
+      {/* Empty query */}
       {!query && <p className="text-center text-gray-600">Please enter an anime name to search.</p>}
 
+      {/* No results */}
       {data && data.length === 0 && query && (
         <p className="text-center text-gray-600">No results found for "{query}".</p>
       )}
 
+      {/* Results grid */}
       {data && data.length > 0 && (
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-4 gap-4">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4  xl:grid-cols-4 gap-3 sm:gap-4">
           {data.map((anime) => (
             <AnimeCard key={anime.session} anime={anime} />
           ))}
         </div>
       )}
     </div>
+  )
+}
+
+export default function SearchResultsPage() {
+  const queryClient = useMemo(() => new QueryClient(), [])
+  return (
+    <QueryClientProvider client={queryClient}>
+      <Results />
+    </QueryClientProvider>
   )
 }
