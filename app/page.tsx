@@ -15,7 +15,7 @@ export default function HomePage() {
             Anime Downloader
           </h1>
 
-          <p className="text-center text-gray-500 max-w-2xl">
+          <p className="hidden md:block text-center text-gray-500 max-w-2xl">
             Search, find, and download episodes, subtitles, and torrents — fast, clean, and no-nonsense.
           </p>
 
@@ -28,7 +28,7 @@ export default function HomePage() {
         </section>
 
         {/* Optional: small stats / quick links row below hero */}
-        <div className="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-4 absolute bottom-20 right-0 left-0 ">
+        <div className="hidden md:block mt-8 grid grid-cols-1 sm:grid-cols-3 gap-4 absolute bottom-20 right-0 left-0 ">
           <div className="p-4 rounded-xl bg-white/3 border border-white/6 text-center">
             <div className="text-2xl font-semibold">Trending</div>
             <div className="text-sm text-gray-400">Naruto • One Piece • Jujutsu Kaisen</div>
