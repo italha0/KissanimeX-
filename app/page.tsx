@@ -11,7 +11,7 @@ export default function HomePage() {
       <div className="w-full max-w-5xl mx-auto mt-20">
         {/* Glass card hero */}
         <section className="bg-white/5 backdrop-blur-md border border-white/10 rounded-3xl p-10 shadow-sm flex flex-col items-center gap-6">
-          <h1 className="text-5xl sm:text-7xl font-extrabold text-center leading-tight bg-gradient-to-r from-[#4B3F3F] to-[#1E293B] bg-clip-text text-transparent">
+          <h1 className="text-5xl sm:text-7xl font-extrabold text-center leading-tight bg-gradient-to-r from-[#887c7c] to-[#1E293B] bg-clip-text text-transparent">
             Anime Downloader
           </h1>
 
