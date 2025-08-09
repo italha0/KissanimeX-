@@ -22,7 +22,7 @@ export function SearchInput() {
     <form onSubmit={handleSearch} className="flex w-full max-w-md items-center space-x-2">
       <Input
         type="text"
-        placeholder="Search Anime"
+        placeholder="Search Naruto, One Piece, Jujutsu Kaisen..."
         value={query}
         onChange={(e) => setQuery(e.target.value)}
         className="flex-1 border-black"

@@ -33,9 +33,9 @@ export function DownloadModal({
   isError,
 }: DownloadModalProps) {
   return (
-    <Dialog open={isOpen} onOpenChange={onClose}>
+    <Dialog  open={isOpen} onOpenChange={onClose}>
       <DialogContent
-        className="sm:max-w-[560px] p-0 overflow-hidden rounded-2xl"
+        className="bg-white sm:max-w-[560px] p-0 overflow-hidden rounded-2xl"
       >
         <div className="relative">
           {/* Close button (top-right "x") */}

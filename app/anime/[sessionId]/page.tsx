@@ -83,8 +83,8 @@ export default function AnimeDetailsPage({ params }: AnimeDetailsPageProps) {
 
   return (
     <div className="container mx-auto p-4">
-      <div className="flex flex-col md:flex-row gap-8 items-start">
-        <div className="relative w-full md:w-1/3 lg:w-1/4 aspect-[2/3] rounded-lg overflow-hidden shadow-lg bg-gray-200">
+      <div className="flex flex-col md:flex-row gap-8 items-center">
+        {/* <div className="relative w-full md:w-1/3 lg:w-1/4 aspect-[2/3] rounded-lg overflow-hidden shadow-lg bg-gray-200">
           <Image
             src={posterUrl || "/placeholder.svg"} // Use the direct URL here
             alt={seriesData.title}
@@ -94,11 +94,11 @@ export default function AnimeDetailsPage({ params }: AnimeDetailsPageProps) {
             className="rounded-lg"
             priority
           />
-        </div>
-        <div className="flex-1">
+        </div> */}
+        <div className="items-center justify-center mx-auto">
           <h1 className="text-3xl font-bold text-gray-900 mb-2">{seriesData.title}</h1>
           {seriesData.synopsis && <p className="text-gray-700 leading-relaxed mb-4">{seriesData.synopsis}</p>}
-          <p className="text-sm text-gray-600">Total Episodes: {seriesData.episodes?.length || 0}</p>
+          <p className="text-sm text-gray-600 flex justify-center">Total Episodes: {seriesData.episodes?.length || 0}</p>
         </div>
       </div>
 

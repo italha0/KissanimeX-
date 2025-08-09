@@ -109,7 +109,7 @@ export function AnimeCard({ anime, className }: AnimeCardProps) {
           </div>
 
           {/* Badges */}
-          <div className="flex flex-wrap gap-2 mt-3">
+          <div className="flex flex-row gap-1 mt-3">
             <span className="inline-flex items-center h-7 rounded-md bg-gradient-to-b from-blue-400 to-blue-600 text-white shadow-lg shadow-blue-500/40">
               <span className="px-2 text-xs sm:text-sm font-normal">{String(type)}</span>
             </span>
