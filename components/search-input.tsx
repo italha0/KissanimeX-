@@ -25,7 +25,7 @@ export function SearchInput() {
         placeholder="Search Anime"
         value={query}
         onChange={(e) => setQuery(e.target.value)}
-        className="flex-1"
+        className="flex-1 border-black"
       />
       <Button type="submit" size="icon">
         <Search className="h-4 w-4" />

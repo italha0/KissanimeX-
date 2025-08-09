@@ -60,7 +60,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <QueryProvider>{children}</QueryProvider>
+        <div className="bg-[url('/bg-main.jpg')] bg-no-repeat bg-center bg-cover">
+          <QueryProvider>{children}</QueryProvider></div>
+        
         <Analytics />
         <SpeedInsights/>
       </body>

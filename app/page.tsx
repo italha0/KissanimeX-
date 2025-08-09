@@ -1,18 +1,48 @@
+"use client"
+
 import Link from "next/link"
+import { useRouter } from "next/navigation"
+import React from "react"
 import { SearchInput } from "@/components/search-input"
-import Head from "next/head"
 
 export default function HomePage() {
   return (
-    <div className="bg-[url('/bg-main.svg')] bg-no-repeat bg-cover flex flex-col items-center justify-start min-h-screen bg-white p-4">
-     
-      <div className="flex flex-col items-center gap-8 mt-20">
-        <h1 className="text-5xl font-bold text-gray-800 text-center">Anime Downloader</h1>
-        <SearchInput />
-        <Link href="/" className="text-sm text-gray-600 hover:underline">
-          Home
-        </Link>
+    <main className="bg-[url('/bg-main.svg')] bg-no-repeat bg-center bg-cover min-h-screen flex items-start justify-center p-6">
+      <div className="w-full max-w-5xl mx-auto mt-20">
+        {/* Glass card hero */}
+        <section className="bg-white/5 backdrop-blur-md border border-white/10 rounded-3xl p-10 shadow-sm flex flex-col items-center gap-6">
+          <h1 className="text-5xl sm:text-7xl font-extrabold text-center leading-tight bg-gradient-to-r from-[#4B3F3F] to-[#1E293B] bg-clip-text text-transparent">
+            Anime Downloader
+          </h1>
+
+          <p className="text-center text-gray-500 max-w-2xl">
+            Search, find, and download episodes, subtitles, and torrents — fast, clean, and no-nonsense.
+          </p>
+
+          <div className="w-full flex justify-center items-center">
+          
+              <SearchInput />
+          </div>
+
+          <p className="text-xs text-gray-500">Tip: try searching by show name, raw title, or torrent hash.</p>
+        </section>
+
+        {/* Optional: small stats / quick links row below hero */}
+        <div className="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-4 absolute bottom-20 right-0 left-0 ">
+          <div className="p-4 rounded-xl bg-white/3 border border-white/6 text-center">
+            <div className="text-2xl font-semibold">Trending</div>
+            <div className="text-sm text-gray-400">Naruto • One Piece • Jujutsu Kaisen</div>
+          </div>
+          <div className="p-4 rounded-xl bg-white/3 border border-white/6 text-center">
+            <div className="text-2xl font-semibold">Fast</div>
+            <div className="text-sm text-gray-400">Low latency search + CDN caching</div>
+          </div>
+          <div className="p-4 rounded-xl bg-white/3 border border-white/6 text-center">
+            <div className="text-2xl font-semibold">Safe</div>
+            <div className="text-sm text-gray-400">No shady trackers or bloat</div>
+          </div>
+        </div>
       </div>
-    </div>
+    </main>
   )
 }
