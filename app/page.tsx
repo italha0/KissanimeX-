@@ -10,7 +10,7 @@ export default function HomePage() {
     <main className="bg-[url('/bg-main.svg')] bg-no-repeat bg-center bg-cover min-h-screen flex items-start justify-center p-6">
       <div className="w-full max-w-5xl mx-auto mt-20">
         {/* Glass card hero */}
-        <section className="bg-white/5 backdrop-blur-md border border-white/10 rounded-3xl p-4 sm:p-10  flex flex-col items-center gap-6">
+        <section className="bg-white/5 backdrop-blur-md border border-white/10 rounded-3xl  sm:p-10  flex flex-col items-center gap-6">
           <h1 className="text-2xl sm:text-6xl font-extrabold text-center leading-tight bg-gradient-to-r from-[#887c7c] to-[#1E293B] bg-clip-text text-transparent">
             Your Gateway to Unlimited <br /> Animes..
           </h1>
