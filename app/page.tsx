@@ -4,7 +4,7 @@ import Head from "next/head"
 
 export default function HomePage() {
   return (
-    <div className="flex flex-col items-center justify-start min-h-screen bg-white p-4">
+    <div className="bg-[url('/bg-main.svg')] bg-no-repeat bg-cover flex flex-col items-center justify-start min-h-screen bg-white p-4">
      
       <div className="flex flex-col items-center gap-8 mt-20">
         <h1 className="text-5xl font-bold text-gray-800 text-center">Anime Downloader</h1>
