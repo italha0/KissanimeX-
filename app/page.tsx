@@ -28,7 +28,7 @@ export default function HomePage() {
         </section>
 
         {/* Optional: small stats / quick links row below hero */}
-        <div className="hidden md:block mt-8 grid grid-cols-1 sm:grid-cols-3 gap-4 absolute bottom-20 right-0 left-0 ">
+        <div className="hidden md:grid mt-8  grid-cols-1 sm:grid-cols-3 gap-4 absolute bottom-20 right-0 left-0 ">
           <div className="p-4 rounded-xl bg-white/3 border border-white/6 text-center">
             <div className="text-2xl font-semibold">Trending</div>
             <div className="text-sm text-gray-400">Naruto • One Piece • Jujutsu Kaisen</div>
