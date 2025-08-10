@@ -9,9 +9,9 @@ import { SpeedInsights } from "@vercel/speed-insights/next"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "Fast Anime Downloads: Your Ultimate Anime Downloader Guide",
+  title: "Fast Anime Downloads: Your Ultimate Anime Downloader",
   description:
-    "Download anime fast and free from sources like AnimePahe, Zoro, and Kissanime. Stream and save your favorite episodes in HD without ads.",
+    "Download anime fast and free from sources like AnimePahe, Zoro, and Kissanime. Stream and save your favorite episodes in HD without ads. Trending now: Solo Leveling Season 2, The Apothecary Diaries Season 2, Frieren: Beyond Journey’s End, Sakamoto Days, Re:ZERO Season 3, Demon Slayer Infinity Castle Arc, Lazarus, Bocchi the Rock Movie, Blue Lock Season 2, Dandadan.",
   keywords: [
     "anime download",
     "anime downloader",
@@ -23,35 +23,19 @@ export const metadata: Metadata = {
     "download anime episodes",
     "anime torrent",
     "anime direct download",
-  ],
-  openGraph: {
-    title: "Anime Downloader",
-    description:
-      "Fast anime download site with support for AnimePahe, Zoro, Kissanime and more. Stream or save episodes in HD.",
-    url: "https://your-site-url.com",
-    siteName: "Anime Downloader",
-    images: [
-      {
-        url: "https://your-site-url.com/preview.jpg",
-        width: 1200,
-        height: 630,
-        alt: "Anime Downloader Preview",
-      },
-    ],
-    locale: "en_US",
-    type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Anime Downloader",
-    description:
-      "Stream or download anime from AnimePahe, Zoro, and more with ease.",
-    images: ["https://your-site-url.com/preview.jpg"],
-    creator: "@yourTwitterHandle",
-  },
-  generator: "v0.dev",
+    "solo leveling season 2",
+    "Kaiju No. 8 Season 2",
+    "the apothecary diaries season 2",
+    "frieren beyond journey's end",
+    "sakamoto days",
+    "rezero season 3",
+    "demon slayer infinity castle",
+    "lazarus anime",
+    "bocchi the rock movie",
+    "blue lock season 2",
+    "dandadan anime",
+  ]
 }
-
 export default function RootLayout({
   children,
 }: Readonly<{
