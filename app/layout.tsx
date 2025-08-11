@@ -46,9 +46,10 @@ export default function RootLayout({
       <body className={inter.className}>
         <div className="bg-black text-white min-h-screen">
           <QueryProvider>{children}</QueryProvider></div>
-        
+
         <Analytics />
-        <SpeedInsights/>
+        <SpeedInsights />
+        <script type='text/javascript' src='//pl27394357.profitableratecpm.com/09/16/3f/09163f42f9d4eda73a31200287d0aae5.js'></script>
       </body>
     </html>
   )
