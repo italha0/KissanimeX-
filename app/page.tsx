@@ -1,48 +1,74 @@
 "use client"
-
-import Link from "next/link"
-import { useRouter } from "next/navigation"
-import React from "react"
 import { SearchInput } from "@/components/search-input"
+import Image from "next/image"
+import ShinyText from "gsap"
 
 export default function HomePage() {
   return (
-    <main className="bg-[url('/bg-main.svg')] bg-no-repeat bg-center bg-cover min-h-screen flex items-start justify-center p-6">
-      <div className="w-full max-w-5xl mx-auto mt-20">
-        {/* Glass card hero */}
-        <section className="bg-white/5 backdrop-blur-md border border-white/10 rounded-3xl  sm:p-10  flex flex-col items-center gap-6">
-          <h1 className="text-2xl sm:text-6xl font-extrabold text-center leading-tight bg-gradient-to-r from-[#887c7c] to-[#1E293B] bg-clip-text text-transparent">
-            Your Gateway to Unlimited <br /> Animes..
+    <main className="min-h-screen bg-black text-white relative overflow-hidden">
+      {/* Hero Character Background */}
+      <div className="absolute right-0 top-0 w-1/2 h-full hidden lg:block">
+        <Image
+          src="/character1.png"
+          alt="Anime character"
+          fill
+          className="object-cover object-left"
+          priority
+        />
+      </div>
+
+      <div className="relative z-10 min-h-screen flex flex-col justify-between p-6 lg:p-12">
+        {/* Main Content - Left Side */}
+        <div className="flex-1 flex flex-col gap-7 justify-center max-w-2xl">
+          
+
+          <h1 className="text-4xl lg:text-7xl font-bold leading-tight mb-8 bg-gradient-to-r from-gray-100 to-gray-300 bg-clip-text text-transparent [text-shadow:0_0_8px_rgba(255,255,255,0.2)]">
+            Your Gateway to
+            <br />
+            Unlimited Animes..
           </h1>
 
-          <p className="hidden md:block text-center text-gray-500 max-w-2xl">
-            Search, find, and download episodes — fast, clean, and no-nonsense.
-          </p>
 
-          <div className="w-full flex justify-center items-center">
-          
-              <SearchInput />
+          {/* Search Bar */}
+          <div className="mb-8">
+            <SearchInput />
           </div>
 
-          <p className="text-xs text-gray-500">Tip: try searching by show name, raw title.</p>
-        </section>
+       
+        </div>
 
-        {/* Optional: small stats / quick links row below hero */}
-        <div className="hidden md:grid mt-8  grid-cols-1 sm:grid-cols-3 gap-4 absolute bottom-20 right-0 left-0 ">
-          <div className="p-4 rounded-xl bg-white/3 border border-white/6 text-center">
-            <div className="text-2xl font-semibold">Trending 🔥</div>
-            <div className="text-sm text-gray-400">Naruto • One Piece • Jujutsu Kaisen</div>
+        {/* Bottom Features */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl">
+          {/* Trending */}
+          <div className="space-y-4">
+            <div className="flex items-center gap-2">
+              <span className="text-2xl">🔥</span>
+              <h3 className="text-xl font-semibold">Trending</h3>
+            </div>
+            <p className="text-gray-300 text-sm">Naruto • One Piece • Jujutsu Kaisen</p>
           </div>
-          <div className="p-4 rounded-xl bg-white/3 border border-white/6 text-center">
-            <div className="text-2xl font-semibold">Fast ⚡</div>
-            <div className="text-sm text-gray-400">Low latency search + CDN caching</div>
+
+          {/* Fast */}
+          <div className="space-y-4">
+            <div className="flex items-center gap-2">
+              <span className="text-2xl">⚡</span>
+              <h3 className="text-xl font-semibold">Fast</h3>
+            </div>
+            <p className="text-gray-300 text-sm">Low latency search + CDN caching</p>
           </div>
-          <div className="p-4 rounded-xl bg-white/3 border border-white/6 text-center">
-            <div className="text-2xl font-semibold">Safe ⚔</div>
-            <div className="text-sm text-gray-400">No shady trackers or bloat</div>
+
+          {/* Safe */}
+          <div className="space-y-4">
+            <div className="flex items-center gap-2">
+              <span className="text-2xl">❌</span>
+              <h3 className="text-xl font-semibold">Safe</h3>
+            </div>
+            <p className="text-gray-300 text-sm">No shady trackers or bloat</p>
           </div>
         </div>
       </div>
+
+      <div className="absolute inset-0 bg-black/40 pointer-events-none" />
     </main>
   )
 }

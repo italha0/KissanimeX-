@@ -25,9 +25,9 @@ export function SearchInput() {
         placeholder="Search Naruto, One Piece, Jujutsu Kaisen..."
         value={query}
         onChange={(e) => setQuery(e.target.value)}
-        className="flex-1 border-black"
+        className="flex-1 border-2 border-white"
       />
-      <Button type="submit" size="icon">
+      <Button className=" bg-white text-black" type="submit" size="icon">
         <Search className="h-4 w-4" />
         <span className="sr-only">Search</span>
       </Button>

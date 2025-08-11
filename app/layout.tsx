@@ -44,7 +44,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <div className="bg-[url('/bg-main.svg')] bg-no-repeat bg-center bg-cover">
+        <div className="bg-black text-white min-h-screen">
           <QueryProvider>{children}</QueryProvider></div>
         
         <Analytics />
