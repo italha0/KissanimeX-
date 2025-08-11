@@ -49,7 +49,6 @@ export default function RootLayout({
 
         <Analytics />
         <SpeedInsights />
-        <script type='text/javascript' src='//pl27394357.profitableratecpm.com/09/16/3f/09163f42f9d4eda73a31200287d0aae5.js'></script>
       </body>
     </html>
   )
