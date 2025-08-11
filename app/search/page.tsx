@@ -26,12 +26,12 @@ function Results() {
 
       {/* Back home */}
       <div className="flex items-center justify-center mb-2">
-        <Link href="/" className="text-sm text-gray-600 hover:underline">
+        <Link href="/" className="text-sm text-gray-200 hover:underline">
           {"\u2190"} Home
         </Link>
       </div>
 
-      <h2 className="text-lg sm:text-2xl font-bold mb-4 sm:mb-6 text-gray-800 text-center sm:text-left">
+      <h2 className="text-lg sm:text-2xl font-bold mb-4 sm:mb-6 text-gray-200 text-center sm:text-left">
         {query ? `Search Results for "${query}"` : "Enter a search query"}
       </h2>
 
@@ -52,16 +52,16 @@ function Results() {
       )}
 
       {/* Empty query */}
-      {!query && <p className="text-center text-gray-600">Please enter an anime name to search.</p>}
+      {!query && <p className="text-center text-gray-200">Please enter an anime name to search.</p>}
 
       {/* No results */}
       {data && data.length === 0 && query && (
-        <p className="text-center text-gray-600">No results found for "{query}".</p>
+        <p className="text-center text-gray-200">No results found for "{query}".</p>
       )}
 
       {/* Results grid */}
       {data && data.length > 0 && (
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4  xl:grid-cols-4 gap-3 sm:gap-4">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4  xl:grid-cols-5 gap-3 sm:gap-4 ">
           {data.map((anime) => (
             <AnimeCard key={anime.session} anime={anime} />
           ))}
