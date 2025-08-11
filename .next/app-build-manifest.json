@@ -13,6 +13,23 @@
       "static/chunks/_e69f0d32._.js",
       "static/chunks/_be317ff2._.js"
     ],
+    "/anime/[sessionId]/page": [
+      "static/chunks/[root of the server]__23ac364f._.css",
+      "static/chunks/node_modules_12e156ff._.js",
+      "static/chunks/lib_query-provider_tsx_c59e80eb._.js",
+      "static/chunks/app_layout_tsx_f0e4c1a2._.js",
+      "static/chunks/[turbopack]_browser_dev_hmr-client_hmr-client_ts_1e8c6c88._.js",
+      "static/chunks/node_modules_12d9e4dc._.js",
+      "static/chunks/_7d9f4454._.js",
+      "static/chunks/app_anime_[sessionId]_page_tsx_539c74da._.js",
+      "static/chunks/[turbopack]_browser_dev_hmr-client_hmr-client_ts_49a6ea35._.js",
+      "static/chunks/node_modules_next_dist_compiled_2ce9398a._.js",
+      "static/chunks/node_modules_next_dist_client_43e3ffb8._.js",
+      "static/chunks/node_modules_next_dist_3bfaed20._.js",
+      "static/chunks/node_modules_@swc_helpers_cjs_00636ac3._.js",
+      "static/chunks/_e69f0d32._.js",
+      "static/chunks/_be317ff2._.js"
+    ],
     "/page": [
       "static/chunks/[root of the server]__23ac364f._.css",
       "static/chunks/node_modules_12e156ff._.js",

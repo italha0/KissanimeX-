@@ -96,9 +96,9 @@ export default function AnimeDetailsPage({ params }: AnimeDetailsPageProps) {
           />
         </div> */}
         <div className="items-center justify-center mx-auto">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">{seriesData.title}</h1>
-          {seriesData.synopsis && <p className="text-gray-700 leading-relaxed mb-4">{seriesData.synopsis}</p>}
-          <p className="text-sm text-gray-600 flex justify-center">Total Episodes: {seriesData.episodes?.length || 0}</p>
+          <h1 className="text-3xl font-bold text-gray-200 mb-2">{seriesData.title}</h1>
+          {seriesData.synopsis && <p className="text-gray-200 leading-relaxed mb-4">{seriesData.synopsis}</p>}
+          <p className="text-sm text-gray-200 flex justify-center">Total Episodes: {seriesData.episodes?.length || 0}</p>
         </div>
       </div>
 

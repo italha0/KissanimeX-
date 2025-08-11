@@ -53,10 +53,10 @@ export function EpisodeList({
   if (isLoading && !episodesToDisplay) {
     return (
       <div className="mt-8">
-        <h2 className="text-2xl font-bold mb-4 text-gray-800">Episodes</h2>
+        <h2 className="text-2xl font-bold mb-4 text-gray-200">Episodes</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
           {Array.from({ length: 12 }).map((_, i) => (
-            <div key={i} className="w-full aspect-video bg-gray-200 animate-pulse rounded-2xl shadow-sm" />
+            <div key={i} className="w-full aspect-video bg-gray-800 animate-pulse rounded-2xl shadow-sm" />
           ))}
         </div>
       </div>
@@ -64,12 +64,12 @@ export function EpisodeList({
   }
 
   if (!episodesToDisplay || episodesToDisplay.length === 0) {
-    return <p className="text-gray-600 text-center mt-4">No episodes found for this series.</p>
+    return <p className="text-gray-200 text-center mt-4">No episodes found for this series.</p>
   }
 
   return (
     <div className="mt-8">
-      <h2 className="text-2xl font-bold mb-4 text-gray-800">Episodes</h2>
+      <h2 className="text-2xl font-bold mb-4 text-gray-200">Episodes</h2>
 
       {currentTotalPages > 1 && (
         <div className="flex justify-center items-center gap-3 mb-6">
@@ -82,7 +82,7 @@ export function EpisodeList({
             <ChevronLeft className="h-4 w-4 mr-2" />
             Previous
           </Button>
-          <span className="text-gray-700 px-3 py-1 rounded-full bg-gray-100">
+          <span className="text-gray-200 px-3 py-1 rounded-full bg-gray-700">
             Page {currentPage} of {currentTotalPages}
           </span>
           <Button
@@ -107,7 +107,7 @@ export function EpisodeList({
               key={episode.session}
               className="group w-full overflow-hidden rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-200 border-0"
             >
-              <div className="relative w-full aspect-[16/9] bg-gray-200">
+              <div className="relative w-full aspect-[16/9] bg-gray-800">
                 <Image
                   src={snapshotUrl || "/placeholder.svg?height=180&width=320&query=anime%20episode%20snapshot"}
                   alt={epTitle}
