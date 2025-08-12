@@ -1,5 +1,6 @@
 import type React from "react"
-import type { Metadata } from "next"
+import type { Metadata } from "next";
+import Script from "next/script";
 import { Inter } from "next/font/google"
 import "./globals.css"
 import { QueryProvider } from "@/lib/query-provider"
@@ -43,12 +44,28 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        {/* Google Analytics */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-TYXH040FTH"
+          strategy="afterInteractive"
+        />
+        <Script id="ga4-init" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-TYXH040FTH');
+          `}
+        </Script>
+      </head>
       <body className={inter.className}>
         <div className="bg-black text-white min-h-screen">
           <QueryProvider>{children}</QueryProvider></div>
 
         <Analytics />
         <SpeedInsights />
+
       </body>
     </html>
   )
