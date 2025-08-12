@@ -1,13 +1,13 @@
-import type React from "react"
+import type React from "react";
 import type { Metadata } from "next";
 import Script from "next/script";
-import { Inter } from "next/font/google"
-import "./globals.css"
-import { QueryProvider } from "@/lib/query-provider"
-import { Analytics } from "@vercel/analytics/next"
-import { SpeedInsights } from "@vercel/speed-insights/next"
+import { Inter } from "next/font/google";
+import "./globals.css";
+import { QueryProvider } from "@/lib/query-provider";
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
-const inter = Inter({ subsets: ["latin"] })
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Fast Anime Downloads: Your Ultimate Anime Downloader",
@@ -35,12 +35,12 @@ export const metadata: Metadata = {
     "bocchi the rock movie",
     "blue lock season 2",
     "dandadan anime",
-  ]
-}
+  ],
+};
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode
+  children: React.ReactNode;
 }>) {
   return (
     <html lang="en">
@@ -49,6 +49,10 @@ export default function RootLayout({
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-TYXH040FTH"
           strategy="afterInteractive"
+        />
+        <meta
+          name="google-site-verification"
+          content="F_PXwJQGHuXbPkZyAULxGnkQDHsRLabg6BuBJHzhNMM"
         />
         <Script id="ga4-init" strategy="afterInteractive">
           {`
@@ -61,12 +65,12 @@ export default function RootLayout({
       </head>
       <body className={inter.className}>
         <div className="bg-black text-white min-h-screen">
-          <QueryProvider>{children}</QueryProvider></div>
+          <QueryProvider>{children}</QueryProvider>
+        </div>
 
         <Analytics />
         <SpeedInsights />
-
       </body>
     </html>
-  )
+  );
 }
