@@ -41,8 +41,8 @@ import Image from "next/image"
                 {/* Bottom Stats */}
                 <div className="text-center py-4 border-t border-gray-800">
                     <p className="text-xs text-gray-500">
-                        <span className="text-orange-400 font-semibold">50K+</span> Anime Series •
-                        <span className="text-orange-400 font-semibold"> 1M+</span> Episodes Available
+                        <span className="text-white font-semibold">50K+</span> Anime Series •
+                        <span className="text-white font-semibold"> 1M+</span> Episodes Available
                     </p>
                 </div>
             </div>
