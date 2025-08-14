@@ -1,10 +1,12 @@
 "use client"
 import { SearchInput } from "@/components/search-input"
 import Image from "next/image"
+import MobileHomePage from "@/components/mobilepage"
 
 export default function HomePage() {
   return (
-    <main className="min-h-screen bg-black text-white relative overflow-hidden">
+    <>
+    <main className=" hidden md:block min-h-screen bg-black text-white relative overflow-hidden">
       {/* Hero Character Background - Now visible on mobile */}
       <div className="absolute right-0 top-0 w-full lg:w-1/2 h-1/3 lg:h-full">
         <Image
@@ -69,6 +71,8 @@ export default function HomePage() {
       </div>
 
       <div className="absolute inset-0 bg-black/40 pointer-events-none" />
-    </main>
+      </main>
+      <MobileHomePage />
+    </>
   )
 }
