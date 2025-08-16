@@ -10,7 +10,7 @@ interface MobileHomePageProps {
 function MobileHomePage({ onSearch }: MobileHomePageProps) {
     return (
         <main className=" md:hidden min-h-screen bg-gradient-to-b from-gray-900 via-black to-gray-900 text-white relative overflow-hidden">
-            <div className="relative z-10 h-[78vh] flex flex-col p-4">
+            <div className="relative z-10 h-[78vh] flex flex-col">
                 {/* Hero Section - Search Focused */}
                 <div className="flex-1 flex flex-col items-center text-center px-2 mt-16">
                     {/* Title and Image Row */}

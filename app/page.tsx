@@ -174,7 +174,7 @@ export default function HomePage() {
   );
 
   return (
-    <div className="min-h-screen bg-black text-white sm:p-6 lg:p-12">
+    <div className="min-h-screen bg-black text-white ">
       {view === "home" && renderHome()}
       {view === "searchResults" && renderSearchResults()}
       {view === "episodeList" && renderEpisodeList()}
