@@ -97,7 +97,7 @@ export function EpisodeList({ sessionId, onDownloadClick }: EpisodeListProps) {
           return (
             <Card
               key={episode.session}
-              className="group w-full overflow-hidden rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-200 border-0"
+              className="group w-full py-0 overflow-hidden rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-200 border-0"
             >
               <div className="relative w-full aspect-[16/9] bg-gray-800">
                 <Image
