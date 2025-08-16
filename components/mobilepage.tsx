@@ -1,9 +1,13 @@
 "use client"
 import { SearchInput } from "@/components/search-input"
-import { Button } from "@/components/ui/button"
 import Image from "next/image"
 
- function MobileHomePage() {
+// Define an interface for the component's props
+interface MobileHomePageProps {
+    onSearch: (query: string) => void;
+}
+
+function MobileHomePage({ onSearch }: MobileHomePageProps) {
     return (
         <main className=" md:hidden min-h-screen bg-gradient-to-b from-gray-900 via-black to-gray-900 text-white relative overflow-hidden">
             <div className="relative z-10 h-[78vh] flex flex-col p-4">
@@ -23,7 +27,7 @@ import Image from "next/image"
 
                         {/* Image on the right */}
                         <div className="">
-                            <Image src="/character1.png" alt="banner" width="300" height="300" />
+                            <Image src="/character1.png" alt="banner" width={300} height={300} />
                             <div className="absolute inset-0 bg-black/40 pointer-events-none" />
                         </div>
                     </div>
@@ -31,7 +35,8 @@ import Image from "next/image"
                     {/* Featured Search Bar - Centered below */}
                     <div className="w-full max-w-2xl mb-9">
                         <div className="relative">
-                            <SearchInput />
+                            {/* Pass the onSearch prop down to the SearchInput component */}
+                            <SearchInput onSearch={onSearch} />
                         </div>
                         <p className="text-xs text-gray-500 mt-4">Try: "Naruto", "One Piece", "Attack on Titan"</p>
                     </div>
@@ -47,10 +52,9 @@ import Image from "next/image"
                 </div>
             </div>
 
-            
+
         </main>
     )
 }
-
 
 export default MobileHomePage;

@@ -10,29 +10,21 @@ import { ChevronLeft, ChevronRight } from 'lucide-react'
 
 interface EpisodeListProps {
   sessionId: string
-  initialEpisodesData: Awaited<ReturnType<typeof getSeriesEpisodes>>
   onDownloadClick: (episodeSessionId: string, episodeTitle: string, episodeNumber: string) => void
 }
 
-export function EpisodeList({
-  sessionId,
-  initialEpisodesData,
-  onDownloadClick,
-}: EpisodeListProps) {
-  const [currentPage, setCurrentPage] = useState(initialEpisodesData?.pagination?.current_page || 1)
+export function EpisodeList({ sessionId, onDownloadClick }: EpisodeListProps) {
+  const [currentPage, setCurrentPage] = useState(1)
 
+  // This hook will fetch the episode data when the component is rendered.
   const { data, isLoading, isError, error } = useQuery({
     queryKey: ["seriesEpisodes", sessionId, currentPage],
     queryFn: () => getSeriesEpisodes(sessionId, currentPage),
-    initialData:
-      currentPage === (initialEpisodesData?.pagination?.current_page || 1) && initialEpisodesData
-        ? initialEpisodesData
-        : undefined,
     placeholderData: (previousData) => previousData,
   })
 
-  const episodesToDisplay = data?.episodes || initialEpisodesData?.episodes
-  const currentTotalPages = data?.pagination?.total_pages || initialEpisodesData?.pagination?.total_pages || 1
+  const episodesToDisplay = data?.episodes
+  const currentTotalPages = data?.pagination?.total_pages || 1
 
   const handlePreviousPage = () => {
     if (currentPage > 1) {
@@ -46,10 +38,6 @@ export function EpisodeList({
     }
   }
 
-  if (isError) {
-    return <p className="text-red-500 text-center mt-4">Error: {error?.message || "Failed to load episodes."}</p>
-  }
-
   if (isLoading && !episodesToDisplay) {
     return (
       <div className="mt-8">
@@ -61,6 +49,10 @@ export function EpisodeList({
         </div>
       </div>
     )
+  }
+
+  if (isError) {
+    return <p className="text-red-500 text-center mt-4">Error: {error?.message || "Failed to load episodes."}</p>
   }
 
   if (!episodesToDisplay || episodesToDisplay.length === 0) {
@@ -99,7 +91,7 @@ export function EpisodeList({
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6">
         {episodesToDisplay.map((episode) => {
-            const snapshotUrl = episode.snapshot || "/placeholder.svg?height=150&width=250"
+          const snapshotUrl = episode.snapshot || "/placeholder.svg?height=150&width=250"
           const epNumber = String(episode.episode || "").padStart(2, "0")
           const epTitle = episode.title || `Episode ${episode.episode}`
           return (
@@ -109,7 +101,7 @@ export function EpisodeList({
             >
               <div className="relative w-full aspect-[16/9] bg-gray-800">
                 <Image
-                  src={snapshotUrl || "/placeholder.svg?height=180&width=320&query=anime%20episode%20snapshot"}
+                  src={snapshotUrl}
                   alt={epTitle}
                   fill
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
@@ -117,11 +109,7 @@ export function EpisodeList({
                   className="rounded-2xl"
                   priority
                 />
-
-                {/* Subtle bottom gradient for depth */}
                 <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 to-transparent opacity-90" />
-
-                {/* Glass overlay bar like the screenshot */}
                 <div className="absolute left-3 right-3 bottom-3">
                   <div className="flex items-center justify-between gap-3 rounded-full border border-white/10 bg-neutral-900/55 backdrop-blur-md px-4 py-2">
                     <p
@@ -130,8 +118,6 @@ export function EpisodeList({
                     >
                       {epTitle}
                     </p>
-
-                    {/* Blue EP pill (keeps your download handler) */}
                     <Button
                       type="button"
                       onClick={() => onDownloadClick(episode.session, epTitle, String(episode.episode))}

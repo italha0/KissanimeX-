@@ -2,19 +2,23 @@
 
 import type React from "react"
 import { useState } from "react"
-import { useRouter } from "next/navigation"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { Search } from "lucide-react"
 
-export function SearchInput() {
+// Define the props for the component, including the onSearch callback
+interface SearchInputProps {
+  onSearch: (query: string) => void;
+}
+
+export function SearchInput({ onSearch }: SearchInputProps) {
   const [query, setQuery] = useState("")
-  const router = useRouter()
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault()
+    // Call the onSearch function passed from the parent component
     if (query.trim()) {
-      router.push(`/search?query=${encodeURIComponent(query.trim())}`)
+      onSearch(query.trim())
     }
   }
 
