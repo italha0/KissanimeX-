@@ -48,16 +48,16 @@ export function SearchInput({ onSearch }: SearchInputProps) {
   const dynamicPlaceholder = `Search ${animePlaceholders[placeholderIndex]}...`
 
   return (
-    <form onSubmit={handleSearch} className="flex w-full max-w-md items-center space-x-2">
+    <form onSubmit={handleSearch} className="flex w-full max-w-[500px] items-start justify-start space-x-2 ">
       <Input
         type="text"
         placeholder={dynamicPlaceholder} // Use the dynamic placeholder here
         value={query}
         onChange={(e) => setQuery(e.target.value)}
-        className="flex-1 border-2 border-white transition-all hover:shadow-[0_0_8px_2px_rgba(255,255,255,0.3)] hover:border-white/90"
+        className="flex-1 border-2 border-white transition-all "
       />
       <Button
-        className="bg-white text-black transition-all hover:bg-white/90 hover:shadow-[0_0_8px_2px_rgba(255,255,255,0.3)]"
+        className="bg-white text-black transition-all hover:bg-white/90 "
         type="submit"
         size="icon"
       >
