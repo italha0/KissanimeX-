@@ -51,7 +51,7 @@ function MobileHomePage({ onSearch }: MobileHomePageProps) {
                 episode: "17",
                 type: "Sub | Dub",
                 time: "2:30am",
-                image: "ep1.webp",
+                image: "ep1.png",
                 isPremium: true,
             },
             {
