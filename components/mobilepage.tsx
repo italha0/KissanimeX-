@@ -47,11 +47,11 @@ function MobileHomePage({ onSearch }: MobileHomePageProps) {
     const latestEpisodes = {
         Today: [
             {
-                title: "(Dub) Toilet-bound Hanako-kun 2 (Spanish Dub)",
+                title: "(Dub) Jobless Reincarantion Season 2 part 2",
                 episode: "17",
                 type: "Sub | Dub",
                 time: "2:30am",
-                image: "episode.webp",
+                image: "ep1.webp",
                 isPremium: true,
             },
             {
