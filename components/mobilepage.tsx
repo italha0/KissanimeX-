@@ -86,7 +86,7 @@ function MobileHomePage({ onSearch }: MobileHomePageProps) {
                         width={32}
                         height={32}
                     />
-                    <h1 className="text-xl font-bold">KissanimeX</h1>
+                    <h1 className="text-xl font-bold">animepaheX</h1>
                 </div>
                 <div className="flex items-center gap-4">
                     <Image
