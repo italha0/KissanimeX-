@@ -78,27 +78,23 @@ export function AnimeCard({ anime, className, onClick }: AnimeCardProps) {
         <h4 className="font-bold leading-snug text-sm sm:text-base break-words line-clamp-2 mt-1">{title}</h4>
       </div>
 
-      {/* Poster with blurred background */}
       <div className="w-full px-3 pb-3 sm:px-4 sm:pb-4">
-        {/* Make image responsive with aspect ratio and sizes for proper device sizing */}
         <div className="relative w-full aspect-[2/3] overflow-hidden rounded-xl">
-          {/* Blurred background */}
+          {/* Blurred background - REMOVED unoptimized PROP */}
           <Image
-            src={posterUrl || "/placeholder.svg?height=900&width=600&query=anime%20poster%20blur"}
+            src={posterUrl}
             alt=""
             aria-hidden="true"
             fill
-            unoptimized
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 33vw, 240px"
             className={cn("absolute inset-0 object-cover", "blur-lg scale-105 saturate-150 opacity-30")}
-            priority
+            priority // Keep priority if these cards are above the fold on initial load
           />
-          {/* Foreground poster */}
+          {/* Foreground poster - REMOVED unoptimized PROP */}
           <Image
-            src={posterUrl || "/placeholder.svg?height=900&width=600&query=anime%20poster"}
+            src={posterUrl}
             alt={title}
             fill
-            unoptimized
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 33vw, 240px"
             onLoad={() => setLoaded(true)}
             className={cn(
@@ -106,7 +102,7 @@ export function AnimeCard({ anime, className, onClick }: AnimeCardProps) {
               "opacity-0 transition-opacity duration-300",
               loaded && "opacity-100",
             )}
-            priority
+            priority // Keep priority here as well
           />
         </div>
         {/* Badges */}
