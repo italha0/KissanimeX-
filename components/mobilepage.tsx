@@ -1,6 +1,17 @@
-"use client"
-import { SearchInput } from "@/components/search-input"
-import Image from "next/image"
+"use client";
+import * as React from "react";
+import { SearchInput } from "@/components/search-input";
+import Image from "next/image";
+import { Card, CardContent } from "@/components/ui/card";
+import {
+    Carousel,
+    CarouselContent,
+    CarouselItem,
+    CarouselNext,
+    CarouselPrevious,
+} from "@/components/ui/carousel";
+import { Download } from "lucide-react";
+import Autoplay from "embla-carousel-autoplay"; // 1. Import the autoplay plugin
 
 // Define an interface for the component's props
 interface MobileHomePageProps {
@@ -8,53 +19,157 @@ interface MobileHomePageProps {
 }
 
 function MobileHomePage({ onSearch }: MobileHomePageProps) {
+    // Mock data for trending anime and latest episodes
+    const trendingAnime = [
+        {
+            title: "Solo Leveling",
+            image: "/solelevelling.png",
+        },
+        {
+            title: "Jujutsu Kaisen",
+            image: "/anime.png",
+        },
+        {
+            title: "Attack on Titan",
+            image: "/attack.png",
+        },
+        {
+            title: "One Piece",
+            image: "/onepiece.png",
+        },
+        {
+            title: "Naruto Shippuden",
+            image: "/kaiju.png",
+        },
+    ];
+
+    const latestEpisodes = [
+        {
+            title: "Mushoku Tensei: Jobless Reincarnation",
+            episode: "21",
+            image: "/episode.webp",
+        },
+        {
+            title: "That Time I Got Reincarnated as a Slime",
+            episode: "45",
+            image: "/episode.webp",
+        },
+        {
+            title: "Black Clover",
+            episode: "171",
+            image: "/episode.webp",
+        },
+        {
+            title: "My Hero Academia",
+            episode: "114",
+            image: "/episode.webp",
+        },
+        {
+            title: "One Punch Man",
+            episode: "25",
+            image: "/episode.webp",
+        },
+        {
+            title: "Demon Slayer",
+            episode: "26",
+            image: "/episode.webp",
+        }
+    ];
+
     return (
-        <main className=" md:hidden min-h-screen bg-gradient-to-b from-gray-900 via-black to-gray-900 text-white relative overflow-hidden">
-            <div className="relative z-10 h-[78vh] flex flex-col">
-                {/* Hero Section - Search Focused */}
-                <div className="flex-1 flex flex-col items-center text-center px-2 mt-16">
-                    {/* Title and Image Row */}
-                    <div className="flex flex-row justify-between items-center w-full max-w-4xl mb-8">
-                        {/* Title on the left */}
-                        <div className="text-left">
-                            <h1 className="text-2xl font-bold mb-3">
-                                Download any Anime
-                            </h1>
-                            <p className="text-gray-400 text-xs max-w-xs leading-relaxed">
-                                Fast, safe, and unlimited anime downloads at your fingertips
-                            </p>
-                        </div>
-
-                        {/* Image on the right */}
-                        <div className="">
-                            <Image src="/character1.png" alt="banner" width={300} height={300} />
-                            <div className="absolute inset-0 bg-black/40 pointer-events-none" />
-                        </div>
-                    </div>
-
-                    {/* Featured Search Bar - Centered below */}
-                    <div className="w-full max-w-2xl mb-9">
-                        <div className="relative">
-                            {/* Pass the onSearch prop down to the SearchInput component */}
-                            <SearchInput onSearch={onSearch} />
-                        </div>
-                        <p className="text-xs text-gray-500 mt-4">Try: "Naruto", "One Piece", "Attack on Titan"</p>
-                    </div>
+        <main className="md:hidden min-h-screen bg-[#0D0D0D] text-white p-4">
+            <header className="flex justify-between items-center mb-6">
+                <div className="flex items-center gap-2">
+                    <Image
+                        src="/placeholder-logo.png"
+                        alt="Logo"
+                        width={32}
+                        height={32}
+                    />
+                    <h1 className="text-xl font-bold">KissanimeX</h1>
                 </div>
-
-
-                {/* Bottom Stats */}
-                <div className="text-center py-4 border-t border-gray-800">
-                    <p className="text-xs text-gray-500">
-                        <span className="text-white font-semibold">50K+</span> Anime Series •
-                        <span className="text-white font-semibold"> 1M+</span> Episodes Available
-                    </p>
+                <div className="flex items-center gap-4">
+                    <Image
+                        src="/placeholder-user.jpg"
+                        alt="User"
+                        width={40}
+                        height={40}
+                        className="rounded-full"
+                    />
                 </div>
+            </header>
+
+            <div className="mb-8">
+                <SearchInput onSearch={onSearch} />
             </div>
 
+            {/* Trending Now Section */}
+            <section className="mb-8">
+                <h2 className="text-lg font-semibold mb-4">Trending Now</h2>
+                <Carousel
+                    // 2. Add the plugins prop
+                    plugins={[
+                        Autoplay({
+                            delay: 2000, // Set the delay to 2 seconds
+                        }),
+                    ]}
+                    opts={{
+                        align: "start",
+                        loop: true,
+                    }}
+                    className="w-full"
+                >
+                    <CarouselContent className="-ml-2">
+                        {trendingAnime.map((anime, index) => (
+                            <CarouselItem key={index} className="basis-1/3 pl-2">
+                                <Card className="bg-transparent border-0">
+                                    <CardContent className="p-0">
+                                        <Image
+                                            src={anime.image}
+                                            alt={anime.title}
+                                            width={150}
+                                            height={225}
+                                            className="rounded-md w-full object-cover"
+                                        />
+                                    </CardContent>
+                                </Card>
+                            </CarouselItem>
+                        ))}
+                    </CarouselContent>
+                </Carousel>
+            </section>
 
+            {/* Latest Episodes Section */}
+            <section>
+                <h2 className="text-lg font-semibold mb-4">Latest Episodes</h2>
+                <div className="grid grid-cols-2 gap-4">
+                    {latestEpisodes.map((anime, index) => (
+                        <Card key={index} className="bg-[#1A1A1A] border-0 rounded-lg overflow-hidden">
+                            <CardContent className="p-0 relative">
+                                <Image
+                                    src={anime.image}
+                                    alt={anime.title}
+                                    width={200}
+                                    height={112}
+                                    className="w-full object-cover"
+                                />
+                                <div className="absolute top-1 right-1 bg-black/50 text-white text-xs px-2 py-1 rounded-full">
+                                    Ep {anime.episode}
+                                </div>
+                                <div className="p-3">
+                                    <h3 className="text-sm font-medium truncate mb-2">{anime.title}</h3>
+                                    <button className="w-full bg-[#6C5CE7] text-white text-sm font-semibold py-2 rounded-md flex items-center justify-center gap-2">
+                                        <Download size={16} />
+                                        <span>Download</span>
+                                    </button>
+                                </div>
+                            </CardContent>
+                        </Card>
+                    ))}
+                </div>
+            </section>
         </main>
-    )
+    );
 }
 
 export default MobileHomePage;
