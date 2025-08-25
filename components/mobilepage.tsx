@@ -69,7 +69,7 @@ function MobileHomePage({ onSearch }: MobileHomePageProps) {
                 episode: "8",
                 type: "Subtitled",
                 time: "10:00pm",
-                image: "episode.webp",
+                image: "ep3.webp",
                 isPremium: false,
             },
             {
