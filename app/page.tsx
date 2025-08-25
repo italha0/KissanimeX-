@@ -8,6 +8,8 @@ import { EpisodeList } from "@/components/episode-list";
 import { DownloadModal } from "@/components/download-modal";
 import { searchAnime, getEpisodeDownloadLinks, AnimeSearchResult } from "@/lib/api";
 import MobileHomePage from "@/components/mobilepage";
+import { Button } from "@/components/ui/button";
+import { ArrowLeftToLine } from 'lucide-react';
 
 export default function HomePage() {
   // --- State for Page View ---
@@ -135,16 +137,16 @@ export default function HomePage() {
 
   const renderSearchResults = () => (
     <div className="container mx-auto ">
-      <button onClick={handleBackToHome} className="text-white mb-4 hover:underline">
-        &larr; Back to Home
-      </button>
+      <Button onClick={handleBackToHome} className="bg-white text-black mb-4 mt-4 ms-4 hover:underline">
+        <ArrowLeftToLine/> Back
+      </Button>
       <h2 className="text-2xl font-bold mb-6 text-center text-white">
         Search Results for "{searchQuery}"
       </h2>
       {isLoading ? (
         <p className="text-white text-center">Loading...</p>
       ) : (
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2 md:gap-4">
           {searchResults.map((anime) => (
             <AnimeCard key={anime.session} anime={anime} onClick={() => handleAnimeSelect(anime)} />
           ))}
@@ -155,9 +157,9 @@ export default function HomePage() {
 
   const renderEpisodeList = () => (
     <div className="container mx-auto ">
-      <button onClick={handleBackToResults} className="text-white mb-4 hover:underline">
-        &larr; Back to Results
-      </button>
+      <Button onClick={handleBackToResults} className="bg-white text-black mb-4 ms-4 mt-4 hover:underline">
+        <ArrowLeftToLine /> Back
+      </Button>
       {selectedAnime && (
         <>
           <div className="text-center mb-8">
