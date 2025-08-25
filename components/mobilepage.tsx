@@ -10,7 +10,7 @@ import {
     CarouselNext,
     CarouselPrevious,
 } from "@/components/ui/carousel";
-import { Download } from "lucide-react";
+import { Download  , Crown } from "lucide-react";
 import Autoplay from "embla-carousel-autoplay"; // 1. Import the autoplay plugin
 
 // Define an interface for the component's props
@@ -43,38 +43,46 @@ function MobileHomePage({ onSearch }: MobileHomePageProps) {
         },
     ];
 
-    const latestEpisodes = [
-        {
-            title: "Mushoku Tensei: Jobless Reincarnation",
-            episode: "21",
-            image: "/episode.webp",
-        },
-        {
-            title: "That Time I Got Reincarnated as a Slime",
-            episode: "45",
-            image: "/episode.webp",
-        },
-        {
-            title: "Black Clover",
-            episode: "171",
-            image: "/episode.webp",
-        },
-        {
-            title: "My Hero Academia",
-            episode: "114",
-            image: "/episode.webp",
-        },
-        {
-            title: "One Punch Man",
-            episode: "25",
-            image: "/episode.webp",
-        },
-        {
-            title: "Demon Slayer",
-            episode: "26",
-            image: "/episode.webp",
-        }
-    ];
+    // Updated mock data for latest episodes to match the screenshot's structure
+    const latestEpisodes = {
+        Today: [
+            {
+                title: "(Dub) Toilet-bound Hanako-kun 2 (Spanish Dub)",
+                episode: "17",
+                type: "Sub | Dub",
+                time: "2:30am",
+                image: "episode.webp",
+                isPremium: true,
+            },
+            {
+                title: "(Dub) Dekin no Mogura: The Earthbound Mole (English Dub)",
+                episode: "5",
+                type: "Sub | Dub",
+                time: "2:00am",
+                image: "ep2.png",
+                isPremium: true,
+            },
+        ],
+        Yesterday: [
+            {
+                title: "The Rising of The Shield Hero ",
+                episode: "8",
+                type: "Subtitled",
+                time: "10:00pm",
+                image: "episode.webp",
+                isPremium: false,
+            },
+            {
+                title: "One Piece: Egghead Island (1123-Current)",
+                episode: "1141",
+                type: "Subtitled",
+                time: "9:15pm",
+                image: "ep4.png",
+                isPremium: false,
+            },
+        ],
+    };
+
 
     return (
         <main className="md:hidden min-h-screen bg-[#0D0D0D] text-white p-4">
@@ -138,35 +146,61 @@ function MobileHomePage({ onSearch }: MobileHomePageProps) {
                     </CarouselContent>
                 </Carousel>
             </section>
-
-            {/* Latest Episodes Section */}
+            {/* featured section */}
             <section>
-                <h2 className="text-lg font-semibold mb-4">Latest Episodes</h2>
-                <div className="grid grid-cols-2 gap-4">
-                    {latestEpisodes.map((anime, index) => (
-                        <Card key={index} className="bg-[#1A1A1A] border-0 rounded-lg overflow-hidden">
-                            <CardContent className="p-0 relative">
-                                <Image
-                                    src={anime.image}
-                                    alt={anime.title}
-                                    width={200}
-                                    height={112}
-                                    className="w-full object-cover"
-                                />
-                                <div className="absolute top-1 right-1 bg-black/50 text-white text-xs px-2 py-1 rounded-full">
-                                    Ep {anime.episode}
-                                </div>
-                                <div className="p-3">
-                                    <h3 className="text-sm font-medium truncate mb-2">{anime.title}</h3>
-                                    <button className="w-full bg-[#6C5CE7] text-white text-sm font-semibold py-2 rounded-md flex items-center justify-center gap-2">
-                                        <Download size={16} />
-                                        <span>Download</span>
-                                    </button>
-                                </div>
-                            </CardContent>
-                        </Card>
-                    ))}
+                <h2 className="text-lg font-semibold mb-4">Featured</h2>
+                <div className="w-full">
+                    <Image
+                        src="/featured.png"
+                        alt="featured"
+                        width={1200}     // set a base intrinsic width
+                        height={600}     // set a base intrinsic height
+                        className="w-full h-auto object-cover rounded-xl"
+                        priority
+                    />
                 </div>
+            </section>
+            {/* New Episodes Section - Updated */}
+            <section>
+                <div className="flex justify-between items-center mb-4">
+                    <h2 className="text-lg font-semibold">New Episodes</h2>
+                    <button className="text-gray-400 text-2xl">&gt;</button>
+                </div>
+
+                {Object.entries(latestEpisodes).map(([day, episodes]) => (
+                    <div key={day}>
+                        <h3 className="text-md font-semibold text-gray-300 my-3">{day}</h3>
+                        <div className="flex flex-col gap-4">
+                            {episodes.map((anime, index) => (
+                                <div key={index} className="flex items-center gap-4">
+                                    <div className="w-32 flex-shrink-0">
+                                        <img
+                                            src={anime.image}
+                                            alt={anime.title}
+                                            width={128}
+                                            height={72}
+                                            className="rounded-md w-full object-cover aspect-video"
+                                        />
+                                    </div>
+                                    <div className="flex-grow">
+                                        <h4 className="text-sm font-medium text-white line-clamp-2">{anime.title}</h4>
+                                        <div className="flex items-center gap-2 text-xs text-gray-400 mt-1">
+                                            {anime.isPremium && <Crown size={14} className="text-yellow-500" />}
+                                            <span>Episode {anime.episode}</span>
+                                        </div>
+                                        <p className="text-xs text-gray-400 mt-1">{anime.type}</p>
+                                    </div>
+                                    <div className="text-sm text-cyan-400 font-semibold flex-shrink-0">
+                                        {anime.time}
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                ))}
+                <button className="w-full mt-6 bg-[#1A1A1A] text-white text-sm font-semibold py-2.5 rounded-md">
+                    SHOW MORE
+                </button>
             </section>
         </main>
     );
