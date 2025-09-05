@@ -89,7 +89,7 @@ export function EpisodeList({ sessionId, onDownloadClick }: EpisodeListProps) {
         </div>
       )}
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6 px-4">
         {episodesToDisplay.map((episode) => {
           const snapshotUrl = episode.snapshot || "/placeholder.svg?height=150&width=250"
           const epNumber = String(episode.episode || "").padStart(2, "0")

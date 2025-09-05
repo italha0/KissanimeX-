@@ -97,15 +97,6 @@ function MobileHomePage({ onSearch }: MobileHomePageProps) {
                     />
                     <h1 className="text-xl font-bold">animepaheX</h1>
                 </div>
-                <div className="flex items-center gap-4">
-                    <Image
-                        src="/placeholder-user.jpg"
-                        alt="User"
-                        width={40}
-                        height={40}
-                        className="rounded-full"
-                    />
-                </div>
             </header>
 
             <div className="mb-8">
@@ -171,7 +162,7 @@ function MobileHomePage({ onSearch }: MobileHomePageProps) {
 
                 {Object.entries(latestEpisodes).map(([day, episodes]) => (
                     <div key={day}>
-                        <h3 className="text-md font-semibold text-gray-300 my-3">{day}</h3>
+                        <h3 className="text-md font-semibold text-gray-900 my-3">{day}</h3>
                         <div className="flex flex-col gap-4">
                             {episodes.map((anime, index) => (
                                 <div key={index} className="flex items-center gap-4">
@@ -192,7 +183,7 @@ function MobileHomePage({ onSearch }: MobileHomePageProps) {
                                         </div>
                                         <p className="text-xs text-gray-400 mt-1">{anime.type}</p>
                                     </div>
-                                    <div className="text-sm text-cyan-400 font-semibold flex-shrink-0">
+                                    <div className="text-sm text-black font-semibold flex-shrink-0">
                                         {anime.time}
                                     </div>
                                 </div>
