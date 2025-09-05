@@ -12,7 +12,7 @@ const inter = Inter({ subsets: ["latin"] });
 // --- SEO ENHANCEMENTS START HERE ---
 
 // Let's define the site's base URL. Replace with your actual domain.
-const siteUrl = "https://animepahi.vercel.app";
+const siteUrl = "https://www.animepah.me/";
 
 const trendingAnime = [
   // --- Current Trending 2025 ---
@@ -154,6 +154,7 @@ export default function RootLayout({
     <html lang="en">
       <head>
         {/* Google Analytics & Site Verification (your existing code is great) */}
+        <link rel="icon" type="image/png" sizes="16x16" href="/logo.png" />
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-TYXH040FTH"
           strategy="afterInteractive"
@@ -178,7 +179,7 @@ export default function RootLayout({
         />
       </head>
       <body className={inter.className}>
-        <div className="bg-black text-white min-h-screen">
+        <div className="bg-white text-black min-h-screen">
           <QueryProvider>{children}</QueryProvider>
         </div>
         <Analytics />
