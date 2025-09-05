@@ -199,7 +199,7 @@ function MobileHomePage({ onSearch }: MobileHomePageProps) {
                         </div>
                     </div>
                 ))}
-                <button className="w-full mt-6 bg-[#1A1A1A] text-black text-sm font-semibold py-2.5 rounded-md">
+                <button className="w-full mt-6 bg-white border text-black text-sm font-semibold py-2.5 rounded-md">
                     SHOW MORE
                 </button>
             </section>

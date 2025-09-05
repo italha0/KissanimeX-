@@ -41,7 +41,7 @@ export function EpisodeList({ sessionId, onDownloadClick }: EpisodeListProps) {
   if (isLoading && !episodesToDisplay) {
     return (
       <div className="mt-8">
-        <h2 className="text-2xl font-bold mb-4 text-gray-200">Episodes</h2>
+        <h2 className="text-2xl font-bold mb-4 text-black">Episodes</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
           {Array.from({ length: 12 }).map((_, i) => (
             <div key={i} className="w-full aspect-video bg-gray-800 animate-pulse rounded-2xl shadow-sm" />
@@ -56,12 +56,12 @@ export function EpisodeList({ sessionId, onDownloadClick }: EpisodeListProps) {
   }
 
   if (!episodesToDisplay || episodesToDisplay.length === 0) {
-    return <p className="text-gray-200 text-center mt-4">No episodes found for this series.</p>
+    return <p className="text-black text-center mt-4">No episodes found for this series.</p>
   }
 
   return (
     <div className="mt-8">
-      <h2 className="text-2xl font-bold mb-4 text-gray-200">Episodes</h2>
+      <h2 className="text-2xl font-bold mb-4 text-black">Episodes</h2>
 
       {currentTotalPages > 1 && (
         <div className="flex justify-center items-center gap-3 mb-6">
@@ -74,7 +74,7 @@ export function EpisodeList({ sessionId, onDownloadClick }: EpisodeListProps) {
             <ChevronLeft className="h-4 w-4 mr-2" />
             Previous
           </Button>
-          <span className="text-gray-200 px-3 py-1 rounded-full bg-gray-700">
+          <span className="text-black px-3 py-1 rounded-full bg-gray-700">
             Page {currentPage} of {currentTotalPages}
           </span>
           <Button

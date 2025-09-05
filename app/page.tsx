@@ -112,7 +112,7 @@ export default function HomePage() {
       {selectedAnime && (
         <>
           <div className="text-center mb-8">
-            <h1 className="text-3xl font-bold text-gray-200 mb-2">{selectedAnime.title}</h1>
+            <h1 className="text-3xl font-bold text-black mb-2">{selectedAnime.title}</h1>
             {selectedAnime.synopsis && <p className="text-gray-300 max-w-3xl mx-auto">{selectedAnime.synopsis}</p>}
           </div>
           <EpisodeList
