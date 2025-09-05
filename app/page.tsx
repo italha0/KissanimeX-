@@ -89,11 +89,11 @@ export default function HomePage() {
       <Button onClick={handleBackToHome} className="bg-white text-black mb-4 mt-4 ms-4 hover:underline">
         <ArrowLeftToLine/> Back
       </Button>
-      <h2 className="text-2xl font-bold mb-6 text-center text-white">
+      <h2 className="text-2xl font-bold mb-6 text-center text-black">
         Search Results for "{searchQuery}"
       </h2>
       {isLoading ? (
-        <p className="text-white text-center">Loading...</p>
+        <p className="text-black text-center">Loading...</p>
       ) : (
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2 md:gap-4">
           {searchResults.map((anime) => (
@@ -125,7 +125,7 @@ export default function HomePage() {
   );
 
   return (
-    <div className="min-h-screen bg-black text-white ">
+    <div className="min-h-screen bg-white text-black ">
       {view === "home" && renderHome()}
       {view === "searchResults" && renderSearchResults()}
       {view === "episodeList" && renderEpisodeList()}

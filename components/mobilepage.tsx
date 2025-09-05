@@ -85,7 +85,7 @@ function MobileHomePage({ onSearch }: MobileHomePageProps) {
 
 
     return (
-        <main className="md:hidden min-h-screen bg-[#0D0D0D] text-white p-4">
+        <main className="md:hidden min-h-screen bg-white text-black p-4">
             <header className="flex justify-between items-center mb-6">
                 <div className="flex items-center gap-2">
                     <Image
@@ -183,7 +183,7 @@ function MobileHomePage({ onSearch }: MobileHomePageProps) {
                                         />
                                     </div>
                                     <div className="flex-grow">
-                                        <h4 className="text-sm font-medium text-white line-clamp-2">{anime.title}</h4>
+                                        <h4 className="text-sm font-medium text-black line-clamp-2">{anime.title}</h4>
                                         <div className="flex items-center gap-2 text-xs text-gray-400 mt-1">
                                             {anime.isPremium && <Crown size={14} className="text-yellow-500" />}
                                             <span>Episode {anime.episode}</span>
@@ -198,7 +198,7 @@ function MobileHomePage({ onSearch }: MobileHomePageProps) {
                         </div>
                     </div>
                 ))}
-                <button className="w-full mt-6 bg-[#1A1A1A] text-white text-sm font-semibold py-2.5 rounded-md">
+                <button className="w-full mt-6 bg-[#1A1A1A] text-black text-sm font-semibold py-2.5 rounded-md">
                     SHOW MORE
                 </button>
             </section>

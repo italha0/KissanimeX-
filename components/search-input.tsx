@@ -54,10 +54,10 @@ export function SearchInput({ onSearch }: SearchInputProps) {
         placeholder={dynamicPlaceholder} // Use the dynamic placeholder here
         value={query}
         onChange={(e) => setQuery(e.target.value)}
-        className="flex-1 border-2 border-white transition-all "
+        className="flex-1 border-2 border-black transition-all "
       />
       <Button
-        className="bg-white text-black transition-all hover:bg-white/90 "
+        className="bg-black text-white transition-all hover:bg-black/90 "
         type="submit"
         size="icon"
       >
