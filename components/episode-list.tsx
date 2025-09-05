@@ -108,6 +108,7 @@ export function EpisodeList({ sessionId, onDownloadClick }: EpisodeListProps) {
                   style={{ objectFit: "cover" }}
                   className="rounded-2xl"
                   priority
+                  quality={70}
                 />
                 <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 to-transparent opacity-90" />
                 <div className="absolute left-3 right-3 bottom-3">

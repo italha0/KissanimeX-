@@ -61,7 +61,7 @@ function DesktopHomePage({ onSearch }: DesktopHomePageProps) {
         <main className="hidden md:block min-h-screen bg-white text-black p-8">
             <header className="flex justify-between items-center mb-8">
                 <div className="flex items-center gap-4">
-                    <Image src="/logo.png" alt="Logo" width={40} height={40} />
+                    <Image src="/logo.png" alt="Logo" width={40} height={40} priority />
                     <h1 className="text-2xl font-bold">animepaheX</h1>
                 </div>
                 <div className="w-full max-w-[600px]">

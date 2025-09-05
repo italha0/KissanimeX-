@@ -86,9 +86,10 @@ export function AnimeCard({ anime, className, onClick }: AnimeCardProps) {
             alt=""
             aria-hidden="true"
             fill
-            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 33vw, 240px"
             className={cn("absolute inset-0 object-cover", "blur-lg scale-105 saturate-150 opacity-30")}
             priority // Keep priority if these cards are above the fold on initial load
+            sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 16vw"
+            quality={70}
           />
           {/* Foreground poster - REMOVED unoptimized PROP */}
           <Image

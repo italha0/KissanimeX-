@@ -92,7 +92,8 @@ function MobileHomePage({ onSearch }: MobileHomePageProps) {
                         src="/logo.webp"
                         alt="Logo"
                         width={32}
-                        height={32}
+                        height={32} 
+                        priority  
                     />
                     <h1 className="text-xl font-bold">animepaheX</h1>
                 </div>
@@ -155,9 +156,9 @@ function MobileHomePage({ onSearch }: MobileHomePageProps) {
                         alt="featured"
                         width={1200}     // set a base intrinsic width
                         height={600}     // set a base intrinsic height
-                        priority // 🚀 ensures preload + fetchpriority="high"
                         className="w-full h-auto object-cover rounded-xl"
-                    
+                        priority
+                        fetchPriority="high" 
                     />
                 </div>
             </section>
@@ -199,9 +200,6 @@ function MobileHomePage({ onSearch }: MobileHomePageProps) {
                         </div>
                     </div>
                 ))}
-                <button className="w-full mt-6 bg-white border text-black text-sm font-semibold py-2.5 rounded-md">
-                    SHOW MORE
-                </button>
             </section>
         </main>
     );

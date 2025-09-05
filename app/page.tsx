@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { SearchInput } from "@/components/search-input";
 import Image from "next/image";
-import { AnimeCard } from "@/components/anime-card";
+import {AnimeCard} from "@/components/anime-card";
 import { EpisodeList } from "@/components/episode-list";
 import { DownloadModal } from "@/components/download-modal";
 import { searchAnime, getEpisodeDownloadLinks, AnimeSearchResult } from "@/lib/api";

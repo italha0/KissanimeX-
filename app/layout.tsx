@@ -12,7 +12,7 @@ const inter = Inter({ subsets: ["latin"] });
 // --- SEO ENHANCEMENTS START HERE ---
 
 // Let's define the site's base URL. Replace with your actual domain.
-const siteUrl = "https://www.animepah.me/";
+const siteUrl = "https://animepahi.vercel.app";
 
 const trendingAnime = [
   // --- Current Trending 2025 ---
@@ -153,8 +153,33 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        {/* Google Analytics & Site Verification (your existing code is great) */}
-        <link rel="icon" type="image/png" sizes="16x16" href="/logo.png" />
+        {/* Preconnect to external origins */}
+        <link rel="preconnect" href="https://www.googletagmanager.com" />
+        <link rel="preconnect" href="https://www.google-analytics.com" />
+
+        {/* Preload LCP image */}
+        <link
+          rel="preload"
+          as="image"
+          href="/featured.webp"
+          fetchPriority="high"
+        />
+
+       
+
+        {/* Add JSON-LD Structured Data */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
+      <body className={inter.className}>
+        <div className="bg-black text-white min-h-screen">
+          <QueryProvider>{children}</QueryProvider>
+        </div>
+        <Analytics />
+        <SpeedInsights />
+        {/* Google Analytics */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-TYXH040FTH"
           strategy="afterInteractive"
@@ -165,25 +190,12 @@ export default function RootLayout({
         />
         <Script id="ga4-init" strategy="afterInteractive">
           {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-TYXH040FTH');
-          `}
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-TYXH040FTH');
+    `}
         </Script>
-
-        {/* Add JSON-LD Structured Data to the head */}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
-      </head>
-      <body className={inter.className}>
-        <div className="bg-white text-black min-h-screen">
-          <QueryProvider>{children}</QueryProvider>
-        </div>
-        <Analytics />
-        <SpeedInsights />
       </body>
     </html>
   );
