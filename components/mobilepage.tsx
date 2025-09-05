@@ -23,23 +23,23 @@ function MobileHomePage({ onSearch }: MobileHomePageProps) {
     const trendingAnime = [
         {
             title: "Solo Leveling",
-            image: "/solelevelling.png",
+            image: "/solelevelling.webp",
         },
         {
             title: "Jujutsu Kaisen",
-            image: "/anime.png",
+            image: "/anime.webp",
         },
         {
             title: "Attack on Titan",
-            image: "/attack.png",
+            image: "/attack.webp",
         },
         {
             title: "One Piece",
-            image: "/onepiece.png",
+            image: "/onepiece.webp",
         },
         {
             title: "Naruto Shippuden",
-            image: "/kaiju.png",
+            image: "/kaiju.webp",
         },
     ];
 
@@ -51,7 +51,7 @@ function MobileHomePage({ onSearch }: MobileHomePageProps) {
                 episode: "17",
                 type: "Sub | Dub",
                 time: "2:30am",
-                image: "ep1.png",
+                image: "ep1.webp",
                 isPremium: true,
             },
             {
@@ -59,7 +59,7 @@ function MobileHomePage({ onSearch }: MobileHomePageProps) {
                 episode: "5",
                 type: "Sub | Dub",
                 time: "2:00am",
-                image: "ep2.png",
+                image: "ep2.webp",
                 isPremium: true,
             },
         ],
@@ -77,7 +77,7 @@ function MobileHomePage({ onSearch }: MobileHomePageProps) {
                 episode: "1141",
                 type: "Subtitled",
                 time: "9:15pm",
-                image: "ep4.png",
+                image: "ep4.webp",
                 isPremium: false,
             },
         ],
@@ -89,7 +89,7 @@ function MobileHomePage({ onSearch }: MobileHomePageProps) {
             <header className="flex justify-between items-center mb-6">
                 <div className="flex items-center gap-2">
                     <Image
-                        src="/logo.png"
+                        src="/logo.webp"
                         alt="Logo"
                         width={32}
                         height={32}
@@ -130,7 +130,7 @@ function MobileHomePage({ onSearch }: MobileHomePageProps) {
                     <CarouselContent className="-ml-2">
                         {trendingAnime.map((anime, index) => (
                             <CarouselItem key={index} className="basis-1/3 pl-2">
-                                <Card className="bg-transparent border-0">
+                                <Card className="bg-transparent border-0 py-0">
                                     <CardContent className="p-0">
                                         <Image
                                             src={anime.image}
@@ -151,12 +151,13 @@ function MobileHomePage({ onSearch }: MobileHomePageProps) {
                 <h2 className="text-lg font-semibold mb-4">Featured</h2>
                 <div className="w-full">
                     <Image
-                        src="/featured.png"
+                        src="/featured.webp"
                         alt="featured"
                         width={1200}     // set a base intrinsic width
                         height={600}     // set a base intrinsic height
+                        priority // 🚀 ensures preload + fetchpriority="high"
                         className="w-full h-auto object-cover rounded-xl"
-                        priority
+                    
                     />
                 </div>
             </section>

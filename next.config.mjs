@@ -1,5 +1,6 @@
 /** @type {import('next').NextConfig} */
 import withBundleAnalyzer from "@next/bundle-analyzer";
+
 const nextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
@@ -38,6 +39,12 @@ const nextConfig = {
         pathname: "/**",
       },
     ],
+  },
+
+  // 🚀 Modern build config
+  experimental: {
+    legacyBrowsers: false, // don’t generate IE11/old polyfills
+    browsersListForSwc: true, // respect browserslist in package.json
   },
 };
 
