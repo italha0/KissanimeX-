@@ -164,7 +164,7 @@ export default function RootLayout({
           href="/featured.webp"
           fetchPriority="high"
         />
-
+        <script type='text/javascript' src='//pl27676030.revenuecpmgate.com/60/98/6f/60986f6ac8e43254cda732190f2ea984.js'></script>
        
 
         {/* Add JSON-LD Structured Data */}
