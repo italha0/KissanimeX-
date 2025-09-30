@@ -112,20 +112,38 @@ export function EpisodeList({ sessionId, onDownloadClick }: EpisodeListProps) {
                 />
                 <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 to-transparent opacity-90" />
                 <div className="absolute left-3 right-3 bottom-3">
-                  <div className="flex items-center justify-between gap-3 rounded-full border border-white/10 bg-neutral-900/55 backdrop-blur-md px-4 py-2">
-                    <p
-                      className="text-white text-sm font-medium truncate"
-                      title={epTitle}
+                  <div className="flex flex-col gap-2">
+                    <div className="flex items-center justify-between gap-3 rounded-full border border-white/10 bg-neutral-900/55 backdrop-blur-md px-4 py-2">
+                      <p
+                        className="text-white text-sm font-medium truncate"
+                        title={epTitle}
+                      >
+                        {epTitle}
+                      </p>
+                      <Button
+                        type="button"
+                        onClick={() => onDownloadClick(episode.session, epTitle, String(episode.episode))}
+                        className="h-8 px-4 rounded-full bg-blue-600 hover:bg-blue-500 text-white text-xs"
+                      >
+                        {"EP "}{epNumber}
+                      </Button>
+                    </div>
+                    {/* Ad Link styled as a download offer */}
+                    <button
+                      className="w-full h-8 rounded-full bg-gradient-to-r from-yellow-400 to-orange-500 text-black font-semibold text-xs shadow-md hover:from-yellow-500 hover:to-orange-600 transition disabled:opacity-60 disabled:cursor-not-allowed"
+                      style={{marginTop: 4}}
+                      onClick={e => {
+                        const btn = e.currentTarget;
+                        if (!btn.hasAttribute('data-clicked')) {
+                          window.open('https://www.revenuecpmgate.com/pfnd5823n?key=3194dc9047c523ced93d92719c82dc02', '_blank', 'noopener');
+                          btn.setAttribute('data-clicked', 'true');
+                          btn.setAttribute('disabled', 'true');
+                          btn.textContent = 'Download Link Ready!';
+                        }
+                      }}
                     >
-                      {epTitle}
-                    </p>
-                    <Button
-                      type="button"
-                      onClick={() => onDownloadClick(episode.session, epTitle, String(episode.episode))}
-                      className="h-8 px-4 rounded-full bg-blue-600 hover:bg-blue-500 text-white text-xs"
-                    >
-                      {"EP "}{epNumber}
-                    </Button>
+                      🔥 Fastest Download Mirror
+                    </button>
                   </div>
                 </div>
               </div>
