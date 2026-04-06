@@ -24,6 +24,20 @@ const nextConfig = {
         port: "",
         pathname: "/snapshots/**",
       },
+      // AnimePahe .pw domain (Posters)
+      {
+        protocol: "https",
+        hostname: "i.animepahe.pw",
+        port: "",
+        pathname: "/posters/**",
+      },
+      // AnimePahe .pw domain (Snapshots)
+      {
+        protocol: "https",
+        hostname: "i.animepahe.pw",
+        port: "",
+        pathname: "/snapshots/**",
+      },
       // Anime API Proxy (if needed)
       {
         protocol: "https",

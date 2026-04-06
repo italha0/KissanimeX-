@@ -6,6 +6,7 @@ import "./globals.css";
 import { QueryProvider } from "@/lib/query-provider";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { AdButton } from "@/components/ad-button";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -164,58 +165,37 @@ export default function RootLayout({
           href="/featured.webp"
           fetchPriority="high"
         />
-        <script type='text/javascript' src='//pl27676030.revenuecpmgate.com/60/98/6f/60986f6ac8e43254cda732190f2ea984.js'></script>
-       
 
         {/* Add JSON-LD Structured Data */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-      </head>
-      <body className={inter.className}>
-        <div className="bg-black text-white min-h-screen">
-          <QueryProvider>{children}</QueryProvider>
-        </div>
-        {/* Smart Ad Link Button */}
-        <div style={{ position: 'fixed', bottom: 16, right: 16, zIndex: 9999 }}>
-          <button
-            id="smart-ad-link-btn"
-            style={{
-              background: '#ffb300',
-              color: '#222',
-              border: 'none',
-              borderRadius: 8,
-              padding: '12px 20px',
-              fontWeight: 'bold',
-              cursor: 'pointer',
-              boxShadow: '0 2px 8px rgba(0,0,0,0.15)'
-            }}
-            onClick={() => {
-              const btn = document.getElementById('smart-ad-link-btn');
-              if (btn && !btn.hasAttribute('data-clicked')) {
-                window.open('https://www.revenuecpmgate.com/pfnd5823n?key=3194dc9047c523ced93d92719c82dc02', '_blank', 'noopener');
-                btn.setAttribute('data-clicked', 'true');
-                btn.setAttribute('disabled', 'true');
-                btn.style.opacity = '0.5';
-                btn.textContent = 'Ad Opened';
-              }
-            }}
-          >
-            Sponsored Ad
-          </button>
-        </div>
-        <Analytics />
-        <SpeedInsights />
+        
+        <meta
+          name="google-site-verification"
+          content="F_PXwJQGHuXbPkZyAULxGnkQDHsRLabg6BuBJHzhNMM"
+        />
+
+        {/* Revenue script */}
+        <Script 
+          src="//pl27676030.revenuecpmgate.com/60/98/6f/60986f6ac8e43254cda732190f2ea984.js"
+          strategy="afterInteractive"
+        />
+
         {/* Google Analytics */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-TYXH040FTH"
           strategy="afterInteractive"
         />
-        <meta
-          name="google-site-verification"
-          content="F_PXwJQGHuXbPkZyAULxGnkQDHsRLabg6BuBJHzhNMM"
-        />
+      </head>
+      <body className={inter.className}>
+        <div className="bg-black text-white min-h-screen">
+          <QueryProvider>{children}</QueryProvider>
+        </div>
+        <AdButton />
+        <Analytics />
+        <SpeedInsights />
         <Script id="ga4-init" strategy="afterInteractive">
           {`
       window.dataLayer = window.dataLayer || [];

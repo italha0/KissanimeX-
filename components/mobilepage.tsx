@@ -89,7 +89,7 @@ function MobileHomePage({ onSearch }: MobileHomePageProps) {
             <header className="flex justify-between items-center mb-6">
                 <div className="flex items-center gap-2">
                     <Image
-                        src="/logo.webp"
+                        src="/logo.png"
                         alt="Logo"
                         width={32}
                         height={32} 
