@@ -13,11 +13,7 @@ interface AnimeCardProps {
 }
 
 export function AnimeCard({ anime, className, onClick }: AnimeCardProps) {
-  // Keep your proxy so remote images work without next.config remotePatterns.
-  const proxyBase = "https://anime.apex-cloud.workers.dev/proxy?modify&proxyUrl="
-  const posterUrl = anime?.poster
-    ? `${proxyBase}${encodeURIComponent(anime.poster)}`
-    : "/placeholder.svg?height=900&width=600"
+  const posterUrl = anime?.poster || "/placeholder.svg?height=900&width=600"
 
   const [loaded, setLoaded] = useState(false)
 

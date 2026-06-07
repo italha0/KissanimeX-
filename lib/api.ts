@@ -1,4 +1,8 @@
-const BASE_URL = "https://anime.apex-cloud.workers.dev/"
+const getBaseUrl = () => {
+  const baseUrl = process.env.NEXT_PUBLIC_APPWRITE_BACKEND_URL?.trim() || "/api/anime"
+
+  return baseUrl.replace(/\/$/, "")
+}
 
 export interface AnimeSearchResult {
   title: string
@@ -37,7 +41,7 @@ export interface EpisodeDownloadLink {
 
 export async function searchAnime(query: string): Promise<AnimeSearchResult[]> {
   if (!query) return []
-  const res = await fetch(`${BASE_URL}?method=search&query=${encodeURIComponent(query)}`)
+  const res = await fetch(`${getBaseUrl()}?method=search&query=${encodeURIComponent(query)}`)
   if (!res.ok) {
     throw new Error(`Failed to fetch search results: ${res.statusText}`)
   }
@@ -47,7 +51,7 @@ export async function searchAnime(query: string): Promise<AnimeSearchResult[]> {
 }
 
 export async function getSeriesEpisodes(sessionId: string, page = 1): Promise<SeriesEpisode> {
-  const res = await fetch(`${BASE_URL}?method=series&session=${encodeURIComponent(sessionId)}&page=${page}`)
+  const res = await fetch(`${getBaseUrl()}?method=series&session=${encodeURIComponent(sessionId)}&page=${page}`)
   if (!res.ok) {
     throw new Error(`Failed to fetch series episodes: ${res.statusText}`)
   }
@@ -59,7 +63,7 @@ export async function getSeriesEpisodes(sessionId: string, page = 1): Promise<Se
 // Updated function to return an array of EpisodeDownloadLink
 export async function getEpisodeDownloadLinks(sessionId: string, episodeId: string): Promise<EpisodeDownloadLink[]> {
   const res = await fetch(
-    `${BASE_URL}?method=episode&session=${encodeURIComponent(sessionId)}&ep=${encodeURIComponent(episodeId)}`,
+    `${getBaseUrl()}?method=episode&session=${encodeURIComponent(sessionId)}&ep=${encodeURIComponent(episodeId)}`,
   )
   if (!res.ok) {
     throw new Error(`Failed to fetch episode download links: ${res.statusText}`)

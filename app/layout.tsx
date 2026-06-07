@@ -139,7 +139,7 @@ export default function RootLayout({
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
-    name: 'AnimePahi', // Your site's name
+    name: 'AnimePahE', // Your site's name
     url: siteUrl,
     potentialAction: {
       '@type': 'SearchAction',

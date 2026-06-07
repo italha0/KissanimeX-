@@ -1,6 +1,20 @@
 /** @type {import('next').NextConfig} */
 import withBundleAnalyzer from "@next/bundle-analyzer";
 
+const appwriteHostname = (() => {
+  const endpoint = process.env.NEXT_PUBLIC_APPWRITE_ENDPOINT?.trim()
+
+  if (!endpoint) {
+    return null
+  }
+
+  try {
+    return new URL(endpoint).hostname
+  } catch {
+    return null
+  }
+})()
+
 const nextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
@@ -38,13 +52,16 @@ const nextConfig = {
         port: "",
         pathname: "/snapshots/**",
       },
-      // Anime API Proxy (if needed)
-      {
-        protocol: "https",
-        hostname: "anime.apex-cloud.workers.dev",
-        port: "",
-        pathname: "/**",
-      },
+      ...(appwriteHostname
+        ? [
+            {
+              protocol: "https",
+              hostname: appwriteHostname,
+              port: "",
+              pathname: "/**",
+            },
+          ]
+        : []),
       // Placeholder images
       {
         protocol: "https",

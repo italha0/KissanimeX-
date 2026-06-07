@@ -1,0 +1,8 @@
+{
+  "name": "kissanimex-backend",
+  "private": true,
+  "type": "commonjs",
+  "scripts": {
+    "lint": "node -e \"console.log('No backend lint configured yet')\""
+  }
+}
