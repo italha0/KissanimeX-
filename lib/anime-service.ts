@@ -23,10 +23,13 @@ export interface EpisodeInfo {
 // ----------------- Appwrite client functions -----------------
 
 async function appwriteRequest(path: string, options: RequestInit = {}) {
-  const endpoint = process.env.NEXT_PUBLIC_APPWRITE_ENDPOINT || "https://fra.cloud.appwrite.io/v1";
+  const endpoint = process.env.NEXT_PUBLIC_APPWRITE_ENDPOINT;
   const projectId = process.env.NEXT_PUBLIC_APPWRITE_PROJECT_ID;
   const apiKey = process.env.APPWRITE_API_KEY;
 
+  if (!endpoint) {
+    throw new Error("Missing NEXT_PUBLIC_APPWRITE_ENDPOINT in environment variables");
+  }
   if (!projectId) {
     throw new Error("Missing NEXT_PUBLIC_APPWRITE_PROJECT_ID in environment variables");
   }
@@ -61,8 +64,11 @@ async function appwriteRequest(path: string, options: RequestInit = {}) {
 // Get cached anime details from Appwrite DB by anilistId
 export async function getCachedAnime(anilistId: string): Promise<AnimeMetadata | null> {
   const databaseId = process.env.APPWRITE_DATABASE_ID;
-  const collectionId = process.env.ANIME_COLLECTION_ID || "anime_discovery";
+  const collectionId = process.env.ANIME_COLLECTION_ID;
 
+  if (!collectionId) {
+    throw new Error("Missing ANIME_COLLECTION_ID in environment variables");
+  }
   if (!databaseId) return null;
 
   try {
@@ -91,8 +97,11 @@ export async function getCachedAnime(anilistId: string): Promise<AnimeMetadata |
 // Write/Update cached anime details in Appwrite DB
 export async function cacheAnime(anime: AnimeMetadata): Promise<void> {
   const databaseId = process.env.APPWRITE_DATABASE_ID;
-  const collectionId = process.env.ANIME_COLLECTION_ID || "anime_discovery";
+  const collectionId = process.env.ANIME_COLLECTION_ID;
 
+  if (!collectionId) {
+    throw new Error("Missing ANIME_COLLECTION_ID in environment variables");
+  }
   if (!databaseId) return;
 
   const data = {
@@ -140,8 +149,11 @@ export async function cacheAnime(anime: AnimeMetadata): Promise<void> {
 // Get cached episodes from Appwrite DB by malId
 export async function getCachedEpisodes(malId: number): Promise<EpisodeInfo[] | null> {
   const databaseId = process.env.APPWRITE_DATABASE_ID;
-  const collectionId = process.env.EPISODES_COLLECTION_ID || "episodes_discovery";
+  const collectionId = process.env.EPISODES_COLLECTION_ID;
 
+  if (!collectionId) {
+    throw new Error("Missing EPISODES_COLLECTION_ID in environment variables");
+  }
   if (!databaseId) return null;
 
   try {
@@ -192,8 +204,11 @@ export async function getCachedEpisodes(malId: number): Promise<EpisodeInfo[] | 
 // Write cached episodes to Appwrite DB
 export async function cacheEpisodes(malId: number, episodes: EpisodeInfo[]): Promise<void> {
   const databaseId = process.env.APPWRITE_DATABASE_ID;
-  const collectionId = process.env.EPISODES_COLLECTION_ID || "episodes_discovery";
+  const collectionId = process.env.EPISODES_COLLECTION_ID;
 
+  if (!collectionId) {
+    throw new Error("Missing EPISODES_COLLECTION_ID in environment variables");
+  }
   if (!databaseId) return;
 
   const promises = episodes.map((ep) => {

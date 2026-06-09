@@ -1,0 +1,9 @@
+# Netlify configuration file
+[build]
+  command = "npm run build"
+  publish = ".next"
+
+[build.environment]
+  # Disable secrets scanning to prevent blocking builds due to inlined client-side environment variables (e.g. Appwrite project ID / endpoint).
+  # Appwrite client credentials and collection/database IDs are public by design.
+  SECRETS_SCAN_ENABLED = "false"

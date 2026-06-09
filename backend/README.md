@@ -20,7 +20,7 @@ Search `GET` requests are cache-first: Appwrite is checked first, and only a cac
 
 ## Project details
 
-- Appwrite project ID: `6a251baf00130dde2cdf`
+- Appwrite project ID: `your_project_id_here`
 - Appwrite API key: keep this out of source control and set it locally or in Appwrite CLI when deploying
 - Appwrite endpoint: `https://cloud.appwrite.io/v1`
 

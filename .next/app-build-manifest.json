@@ -24,19 +24,12 @@
       "static/chunks/main-app-b1065884a5899549.js",
       "static/chunks/app/loading-328ca02924db4dc5.js"
     ],
-    "/api/anime/[id]/route": [
+    "/api/anime/test/route": [
       "static/chunks/webpack-9bc126d640e13aed.js",
       "static/chunks/4bd1b696-c1192eabd8ea9874.js",
       "static/chunks/684-e9d55d7ef26b69b0.js",
       "static/chunks/main-app-b1065884a5899549.js",
-      "static/chunks/app/api/anime/[id]/route-5887c72ce54f1739.js"
-    ],
-    "/api/search/route": [
-      "static/chunks/webpack-9bc126d640e13aed.js",
-      "static/chunks/4bd1b696-c1192eabd8ea9874.js",
-      "static/chunks/684-e9d55d7ef26b69b0.js",
-      "static/chunks/main-app-b1065884a5899549.js",
-      "static/chunks/app/api/search/route-3a96bc87d637a1dc.js"
+      "static/chunks/app/api/anime/test/route-0fecadcac9596810.js"
     ],
     "/api/anime/route": [
       "static/chunks/webpack-9bc126d640e13aed.js",
@@ -52,12 +45,19 @@
       "static/chunks/main-app-b1065884a5899549.js",
       "static/chunks/app/api/anime/[id]/episodes/route-a133bd151f470bbc.js"
     ],
-    "/api/anime/test/route": [
+    "/api/anime/[id]/route": [
       "static/chunks/webpack-9bc126d640e13aed.js",
       "static/chunks/4bd1b696-c1192eabd8ea9874.js",
       "static/chunks/684-e9d55d7ef26b69b0.js",
       "static/chunks/main-app-b1065884a5899549.js",
-      "static/chunks/app/api/anime/test/route-0fecadcac9596810.js"
+      "static/chunks/app/api/anime/[id]/route-5887c72ce54f1739.js"
+    ],
+    "/api/search/route": [
+      "static/chunks/webpack-9bc126d640e13aed.js",
+      "static/chunks/4bd1b696-c1192eabd8ea9874.js",
+      "static/chunks/684-e9d55d7ef26b69b0.js",
+      "static/chunks/main-app-b1065884a5899549.js",
+      "static/chunks/app/api/search/route-3a96bc87d637a1dc.js"
     ],
     "/anime/[id]/page": [
       "static/chunks/webpack-9bc126d640e13aed.js",

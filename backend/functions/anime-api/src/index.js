@@ -28,19 +28,19 @@ const readEnv = (...names) => {
 }
 
 const config = {
-  endpoint: readEnv("APPWRITE_FUNCTION_ENDPOINT", "APPWRITE_ENDPOINT", "https://cloud.appwrite.io/v1"),
-  projectId: readEnv("APPWRITE_FUNCTION_PROJECT_ID", "APPWRITE_PROJECT_ID", "6a251baf00130dde2cdf"),
+  endpoint: readEnv("APPWRITE_FUNCTION_ENDPOINT", "APPWRITE_ENDPOINT"),
+  projectId: readEnv("APPWRITE_FUNCTION_PROJECT_ID", "APPWRITE_PROJECT_ID"),
   apiKey: readEnv("APPWRITE_FUNCTION_API_KEY", "APPWRITE_API_KEY"),
-  databaseId: readEnv("APPWRITE_DATABASE_ID", "APPWRITE_DB_ID", "animepahdb"),
-  animeCollectionId: readEnv("APPWRITE_ANIME_COLLECTION_ID", "anime"),
-  seriesCollectionId: readEnv("APPWRITE_SERIES_COLLECTION_ID", "series"),
-  episodeCollectionId: readEnv("APPWRITE_EPISODE_COLLECTION_ID", "episodes"),
-  sourceSearchUrl: readEnv("ANIME_SOURCE_SEARCH_URL", "FRESH_SEARCH_FUNCTION_URL"),
-  sourceSearchQueryParam: readEnv("ANIME_SOURCE_SEARCH_QUERY_PARAM", "query"),
-  sourceSeriesUrl: readEnv("ANIME_SOURCE_SERIES_URL", "FRESH_SERIES_FUNCTION_URL"),
-  sourceEpisodeUrl: readEnv("ANIME_SOURCE_EPISODE_URL", "FRESH_EPISODE_FUNCTION_URL"),
+  databaseId: readEnv("APPWRITE_DATABASE_ID", "APPWRITE_DB_ID"),
+  animeCollectionId: readEnv("APPWRITE_ANIME_COLLECTION_ID"),
+  seriesCollectionId: readEnv("APPWRITE_SERIES_COLLECTION_ID"),
+  episodeCollectionId: readEnv("APPWRITE_EPISODE_COLLECTION_ID"),
+  sourceSearchUrl: readEnv("ANIME_SOURCE_SEARCH_URL"),
+  sourceSearchQueryParam: readEnv("ANIME_SOURCE_SEARCH_QUERY_PARAM"),
+  sourceSeriesUrl: readEnv("ANIME_SOURCE_SERIES_URL"),
+  sourceEpisodeUrl: readEnv("ANIME_SOURCE_EPISODE_URL"),
   sourceApiKey: readEnv("ANIME_SOURCE_API_KEY"),
-  gogoApiUrl: readEnv("GOGO_API_URL", "NEXT_PUBLIC_GOGO_API_URL", "https://animepah.tq74198.workers.dev"),
+  gogoApiUrl: readEnv("GOGO_API_URL", "NEXT_PUBLIC_GOGO_API_URL"),
 }
 
 const appwriteBase = config.endpoint.replace(/\/$/, "")

@@ -1,10 +1,10 @@
 {
   "/_not-found/page": "app/_not-found/page.js",
-  "/api/anime/[id]/route": "app/api/anime/[id]/route.js",
-  "/api/search/route": "app/api/search/route.js",
+  "/api/anime/test/route": "app/api/anime/test/route.js",
   "/api/anime/route": "app/api/anime/route.js",
   "/api/anime/[id]/episodes/route": "app/api/anime/[id]/episodes/route.js",
-  "/api/anime/test/route": "app/api/anime/test/route.js",
+  "/api/anime/[id]/route": "app/api/anime/[id]/route.js",
+  "/api/search/route": "app/api/search/route.js",
   "/anime/[id]/page": "app/anime/[id]/page.js",
   "/page": "app/page.js"
 }
