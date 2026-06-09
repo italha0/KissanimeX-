@@ -1,5 +1,5 @@
 {
-    "projectId": "6a251baf00130dde2cdf",
+    "projectId": "YOUR_PROJECT_ID_HERE",
     "projectName": "animepah",
-    "endpoint": "https://fra.cloud.appwrite.io/v1"
+    "endpoint": "https://YOUR_ENDPOINT_HERE"
 }
