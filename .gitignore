@@ -9,6 +9,7 @@ yarn.lock
 pnpm-lock.yaml
 .next
 # Next.js
+.next
 .next/
 out/
 *.next/
@@ -105,3 +106,6 @@ dist/
 turbo/
 /.next
 scratch/
+/.next
+/.next
+/.next

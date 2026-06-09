@@ -402,24 +402,35 @@ export async function fetchJikanEpisodes(malId: number): Promise<EpisodeInfo[]> 
   let episodes: EpisodeInfo[] = [];
   let page = 1;
   let hasNextPage = true;
+  const maxRetries = 3;
 
   while (hasNextPage) {
     const url = `https://api.jikan.moe/v4/anime/${malId}/episodes?page=${page}`;
     console.log(`[Jikan] Fetching page ${page} for malId ${malId}...`);
 
-    let res: Response;
-    try {
-      res = await fetch(url);
-    } catch (err: any) {
-      console.error(`[Jikan] Network error fetching episodes (page ${page}, malId ${malId}):`, err.message);
-      await delay(2000);
-      continue;
+    let res: Response | null = null;
+    let retries = 0;
+    let success = false;
+
+    while (retries < maxRetries && !success) {
+      try {
+        res = await fetch(url);
+        if (res.status === 429) {
+          console.warn(`[Jikan] 429 Rate Limit on page ${page}. Retry ${retries + 1}/${maxRetries} in 2 seconds...`);
+          await delay(2000);
+          retries++;
+        } else {
+          success = true;
+        }
+      } catch (err: any) {
+        console.error(`[Jikan] Network error fetching episodes (page ${page}, malId ${malId}, retry ${retries + 1}/${maxRetries}):`, err.message);
+        await delay(2000);
+        retries++;
+      }
     }
 
-    if (res.status === 429) {
-      console.warn("[Jikan] 429 Rate Limit. Retrying in 2 seconds...");
-      await delay(2000);
-      continue;
+    if (!res || !success) {
+      throw new Error(`Jikan API failed to fetch page ${page} after ${maxRetries} retries due to rate limit or network issues.`);
     }
 
     if (!res.ok) {
