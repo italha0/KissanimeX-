@@ -69,6 +69,20 @@ const nextConfig = {
         port: "",
         pathname: "/**",
       },
+      // MyAnimeList images
+      {
+        protocol: "https",
+        hostname: "cdn.myanimelist.net",
+        port: "",
+        pathname: "/**",
+      },
+      // AniList Cover Images
+      {
+        protocol: "https",
+        hostname: "*.anilist.co",
+        port: "",
+        pathname: "/**",
+      },
     ],
   },
 

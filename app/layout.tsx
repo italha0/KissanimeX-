@@ -1,14 +1,11 @@
 import type React from "react";
 import type { Metadata } from "next";
 import Script from "next/script";
-import { Inter } from "next/font/google";
 import "./globals.css";
 import { QueryProvider } from "@/lib/query-provider";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { AdButton } from "@/components/ad-button";
-
-const inter = Inter({ subsets: ["latin"] });
 
 // --- SEO ENHANCEMENTS START HERE ---
 
@@ -157,6 +154,11 @@ export default function RootLayout({
         {/* Preconnect to external origins */}
         <link rel="preconnect" href="https://www.googletagmanager.com" />
         <link rel="preconnect" href="https://www.google-analytics.com" />
+        
+        {/* Preconnect and stylesheet links for Google Fonts */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
 
         {/* Preload LCP image */}
         <link
@@ -189,7 +191,7 @@ export default function RootLayout({
           strategy="afterInteractive"
         />
       </head>
-      <body className={inter.className}>
+      <body className="font-sans">
         <div className="bg-black text-white min-h-screen">
           <QueryProvider>{children}</QueryProvider>
         </div>

@@ -71,7 +71,7 @@ function normalizeJikanItem(item) {
 }
 
 async function searchAnimePahe(query) {
-  const url = new URL("https://animepahe.ru/api")
+  const url = new URL("https://animepahe.pw/api")
   url.searchParams.set("m", "search")
   url.searchParams.set("q", query)
 
@@ -80,7 +80,7 @@ async function searchAnimePahe(query) {
       accept: "application/json, text/plain, */*",
       "user-agent":
         "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125 Safari/537.36",
-      referer: "https://animepahe.ru/",
+      referer: "https://animepahe.pw/",
     },
   })
 

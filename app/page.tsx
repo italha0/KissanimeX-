@@ -1,24 +1,29 @@
 "use client";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
 import { SearchInput } from "@/components/search-input";
 import Image from "next/image";
 import {AnimeCard} from "@/components/anime-card";
 import { EpisodeList } from "@/components/episode-list";
 import { DownloadModal } from "@/components/download-modal";
-import { searchAnime, getEpisodeDownloadLinks, AnimeSearchResult } from "@/lib/api";
+import { searchAnimeDiscovery, getEpisodeDownloadLinks, AnimeSearchResult } from "@/lib/api";
 import MobileHomePage from "@/components/mobilepage";
 import DesktopHomePage from "@/components/DesktopPage";
 import { Button } from "@/components/ui/button";
 import { ArrowLeftToLine } from 'lucide-react';
+import { CookieSetup } from "@/components/cookie-setup";
 
 export default function HomePage() {
+  const router = useRouter();
+
   // --- State for Page View ---
   const [view, setView] = useState("home"); // 'home', 'searchResults', or 'episodeList'
   const [searchQuery, setSearchQuery] = useState("");
-  const [searchResults, setSearchResults] = useState<AnimeSearchResult[]>([]);
-  const [selectedAnime, setSelectedAnime] = useState<AnimeSearchResult | null>(null);
+  const [searchResults, setSearchResults] = useState<any[]>([]);
+  const [selectedAnime, setSelectedAnime] = useState<any | null>(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [isSynopsisExpanded, setIsSynopsisExpanded] = useState(false);
 
   // --- State for Download Modal ---
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -41,15 +46,23 @@ export default function HomePage() {
     if (!query) return;
     setIsLoading(true);
     setSearchQuery(query);
-    const results = await searchAnime(query);
-    setSearchResults(results);
+    try {
+      const results = await searchAnimeDiscovery(query);
+      const mapped = results.map((item: any) => ({
+        ...item,
+        session: item.anilistId,
+        title: item.titleEnglish || item.titleRomaji || "Untitled",
+      }));
+      setSearchResults(mapped);
+    } catch (err) {
+      console.error("Search failed:", err);
+    }
     setView("searchResults");
     setIsLoading(false);
   };
 
-  const handleAnimeSelect = (anime: AnimeSearchResult) => {
-    setSelectedAnime(anime);
-    setView("episodeList");
+  const handleAnimeSelect = (anime: any) => {
+    router.push(`/anime/${anime.anilistId}`);
   };
 
   const handleBackToHome = () => {
@@ -57,11 +70,13 @@ export default function HomePage() {
     setSearchQuery("");
     setSearchResults([]);
     setSelectedAnime(null);
+    setIsSynopsisExpanded(false);
   };
 
   const handleBackToResults = () => {
     setView("searchResults");
     setSelectedAnime(null);
+    setIsSynopsisExpanded(false);
   }
 
   const handleDownloadClick = (episodeSessionId: string, episodeTitle: string, episodeNumber: string) => {
@@ -113,7 +128,25 @@ export default function HomePage() {
         <>
           <div className="text-center mb-8">
             <h1 className="text-3xl font-bold text-black mb-2">{selectedAnime.title}</h1>
-            {selectedAnime.synopsis && <p className="text-gray-300 max-w-3xl mx-auto">{selectedAnime.synopsis}</p>}
+             {selectedAnime.synopsis && (
+              <div className="max-w-3xl mx-auto mt-2 px-4">
+                <p
+                  className={`text-gray-600 text-sm leading-relaxed transition-all duration-300 ${
+                    isSynopsisExpanded ? "" : "line-clamp-3"
+                  }`}
+                >
+                  {selectedAnime.synopsis}
+                </p>
+                {selectedAnime.synopsis.length > 180 && (
+                  <button
+                    onClick={() => setIsSynopsisExpanded(!isSynopsisExpanded)}
+                    className="text-xs font-semibold text-blue-600 hover:text-blue-500 hover:underline mt-1 focus:outline-none"
+                  >
+                    {isSynopsisExpanded ? "Show Less" : "Read More"}
+                  </button>
+                )}
+              </div>
+            )}
           </div>
           <EpisodeList
             sessionId={selectedAnime.session}
@@ -139,6 +172,7 @@ export default function HomePage() {
         isLoading={isModalLoading}
         isError={isModalError}
       />
+      <CookieSetup />
     </div>
   );
 }

@@ -54,3 +54,4 @@ dist/
 
 # Turbo / monorepo (optional)
 turbo/
+/.next

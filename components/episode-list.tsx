@@ -15,11 +15,12 @@ interface EpisodeListProps {
 
 export function EpisodeList({ sessionId, onDownloadClick }: EpisodeListProps) {
   const [currentPage, setCurrentPage] = useState(1)
+  const [subOrDub, setSubOrDub] = useState<"sub" | "dub">("sub")
 
   // This hook will fetch the episode data when the component is rendered.
   const { data, isLoading, isError, error } = useQuery({
-    queryKey: ["seriesEpisodes", sessionId, currentPage],
-    queryFn: () => getSeriesEpisodes(sessionId, currentPage),
+    queryKey: ["seriesEpisodes", sessionId, currentPage, subOrDub],
+    queryFn: () => getSeriesEpisodes(sessionId, currentPage, subOrDub),
     placeholderData: (previousData) => previousData,
   })
 
@@ -61,7 +62,41 @@ export function EpisodeList({ sessionId, onDownloadClick }: EpisodeListProps) {
 
   return (
     <div className="mt-8">
-      <h2 className="text-2xl font-bold mb-4 text-black">Episodes</h2>
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
+        <h2 className="text-2xl font-bold text-black">Episodes</h2>
+        <div className="flex items-center bg-gray-100 p-1 rounded-full border border-gray-200 shadow-inner">
+          <Button
+            type="button"
+            variant="ghost"
+            onClick={() => {
+              setSubOrDub("sub")
+              setCurrentPage(1)
+            }}
+            className={`px-6 py-1.5 h-auto text-xs font-semibold rounded-full transition-all duration-200 ${
+              subOrDub === "sub"
+                ? "bg-blue-600 text-white shadow-md hover:bg-blue-600"
+                : "text-gray-600 hover:text-black hover:bg-transparent"
+            }`}
+          >
+            Subbed
+          </Button>
+          <Button
+            type="button"
+            variant="ghost"
+            onClick={() => {
+              setSubOrDub("dub")
+              setCurrentPage(1)
+            }}
+            className={`px-6 py-1.5 h-auto text-xs font-semibold rounded-full transition-all duration-200 ${
+              subOrDub === "dub"
+                ? "bg-blue-600 text-white shadow-md hover:bg-blue-600"
+                : "text-gray-600 hover:text-black hover:bg-transparent"
+            }`}
+          >
+            Dubbed
+          </Button>
+        </div>
+      </div>
 
       {currentTotalPages > 1 && (
         <div className="flex justify-center items-center gap-3 mb-6">

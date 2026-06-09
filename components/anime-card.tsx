@@ -26,7 +26,7 @@ export function AnimeCard({ anime, className, onClick }: AnimeCardProps) {
   const episodesText = typeof episodes === "number" ? `${episodes} Episodes` : "Episodes"
   const statusRaw = (anime as any)?.status ?? ""
   const status = typeof statusRaw === "string" && statusRaw.trim().length ? statusRaw : "Finished Airing"
-  const title = anime?.title ?? "Untitled"
+  const title = anime?.title || (anime as any)?.titleEnglish || (anime as any)?.titleRomaji || "Untitled"
 
   const year =
     (anime as any)?.year ??
